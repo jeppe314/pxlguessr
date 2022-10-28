@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Press+Start+2P&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -15,14 +17,21 @@
   align-items: center;
 }
 
-.header {
+.container * {
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
   flex: 1;
-  background-color: green;
+  background-color: black;
+  font-family: "Press Start 2P", sans;
+  
 }
 
 .game {
   flex: 4;
   background: black;
-  width: 100%;
 }

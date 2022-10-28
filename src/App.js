@@ -1,5 +1,5 @@
 function App() {
-  return <div className="App">PXLGUESSR</div>
+  return <div className="container">PXLGUESSR</div>
 }
 
 export default App

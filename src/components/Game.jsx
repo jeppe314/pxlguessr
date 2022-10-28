@@ -1,5 +1,5 @@
 import React from "react"
 
 export const Game = () => {
-  return <div>Game</div>
+  return <div className="game--wrapper">Game</div>
 }

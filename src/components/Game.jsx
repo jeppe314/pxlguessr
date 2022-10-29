@@ -1,9 +1,12 @@
-import React, { useState, useRef, useEffect } from "react"
+import React, { useContext, useState, useRef, useEffect } from "react"
+import { GameContext } from "../contexts/GameContext"
 
 export const Game = () => {
   const [mouseDown, setMouseDown] = useState(false)
   const [rect, setRect] = useState({})
   const [boxStyles, setBoxStyles] = useState({})
+  const { gameState, setGameState } = useContext(GameContext)
+  console.log(gameState)
 
   const startPos = (e) => {
     setMouseDown(true)
@@ -27,15 +30,14 @@ export const Game = () => {
     const relY = e.clientY - rect.top
     if (mouseDown) {
       setBoxStyles({
-        left:
-          boxStyles.left >= e.clientX ? e.clientX : boxStyles.left,
-
-        top: boxStyles.top >= e.clientY ? e.clientY : boxStyles.top,
+        left: boxStyles.left > e.clientX ? e.clientX : boxStyles.left,
+        top:
+          boxStyles.top > e.clientY
+            ? e.clientY - rect.top
+            : boxStyles.top,
         width: relX >= 0 ? relX : relX + -(2 * relX),
         height: relY >= 0 ? relY : relY + -(2 * relY),
       })
-
-      console.log(e.clientX + "::" + boxStyles.left)
     } else return
   }
 

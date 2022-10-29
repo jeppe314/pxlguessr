@@ -2,48 +2,50 @@ import React, { useState, useRef, useEffect } from "react"
 
 export const Game = () => {
   const [mouseDown, setMouseDown] = useState(false)
+  const [rect, setRect] = useState({})
 
-  const [pos, setPos] = useState({
-    top: 0,
-    left: 0,
-    width: "0",
-    height: "0",
+  const [box, setBox] = useState({
+    top: "0px",
+    left: "0px",
+    width: "0px",
+    height: "0px",
   })
 
   const boxStyles = {
     backgroundColor: "yellow",
-    top: pos.top,
-    left: pos.left,
-    width: pos.width,
-    height: pos.height,
+    top: box.top,
+    left: box.left,
+    width: box.width,
+    height: box.height,
   }
 
   const startPos = (e) => {
     const el = e.target.getBoundingClientRect()
-    const x = e.clientX - el.left
-    const y = e.clientY - el.top
-
     setMouseDown(true)
 
-    setPos({
-      ...pos,
-      left: x,
-      top: y,
+    setRect({
+      left: el.left,
+      top: el.top,
     })
+
+    setBox({
+      width: "0px",
+      height: "0px",
+      left: e.clientX + "px",
+      top: e.clientY - rect.top + "px",
+    })
+
+    console.log(box)
   }
 
   const boxMove = (e) => {
-    const el = e.target.getBoundingClientRect()
-    const x = Math.round(e.clientX - el.left)
-    const y = Math.round(e.clientY - el.top)
-
+    const relX = e.clientX
+    const relY = e.clientY - rect.top
     if (mouseDown) {
-      console.log("moved x: " + x)
-      console.log("moved y: " + y)
-      setPos({
-        ...pos,
-        width: x + "px",
-        height: y + "px",
+      setBox({
+        ...box,
+        width: relX + "px",
+        height: relY + "px",
       })
     } else return
   }

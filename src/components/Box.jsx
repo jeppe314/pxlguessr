@@ -2,9 +2,11 @@ import React from "react"
 import { Rnd } from "react-rnd"
 
 export const Box = () => {
+  const styles = {
+    backgroundColor: "white",
+  }
   return (
     <Rnd
-      ref={boxRef}
       style={styles}
       default={{
         x: 0,

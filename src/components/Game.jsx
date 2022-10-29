@@ -1,16 +1,12 @@
 import React, { useState, useRef } from "react"
-import { createElement } from "react"
 
 export const Game = () => {
 
   const draw = () => {}
 
+  console.log(guessing)
+
   return (
-    <div
-      className="game"
-      onDrag={() => console.log("dragging lol")}
-      onClick={() => draw()}
-    >
-    </div>
+    <div className="game" onClick={() => setGuessing(true)}></div>
   )
 }

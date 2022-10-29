@@ -21,7 +21,6 @@ export const Game = () => {
 
   const startPos = (e) => {
     const el = e.target.getBoundingClientRect()
-    setMouseDown(true)
 
     setRect({
       left: el.left,
@@ -32,13 +31,16 @@ export const Game = () => {
       width: "0px",
       height: "0px",
       left: e.clientX + "px",
-      top: e.clientY - rect.top + "px",
+      top: e.clientY - el.top + "px",
     })
-
-    console.log(box)
+    setMouseDown(true)
   }
 
+  //TODO: Fix this shit FIXME
+
   const boxMove = (e) => {
+    console.log(box)
+
     const relX = e.clientX
     const relY = e.clientY - rect.top
     if (mouseDown) {

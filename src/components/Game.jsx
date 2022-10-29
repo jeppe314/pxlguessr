@@ -1,19 +1,13 @@
 import React, { useState, useRef, useEffect } from "react"
 
 export const Game = () => {
-  const boxRef = useRef()
-
-  useEffect(() => {
-    boxRef.current.addEventListener("onMouseDown", () => {
-      console.log("moin")
-    })
-  }, [])
+  const [mouseDown, setMouseDown] = useState(false)
 
   const [pos, setPos] = useState({
     top: 0,
     left: 0,
-    width: "100%",
-    height: "100%",
+    width: "0",
+    height: "0",
   })
 
   const boxStyles = {
@@ -29,11 +23,13 @@ export const Game = () => {
     const x = e.clientX - el.left
     const y = e.clientY - el.top
 
+    setMouseDown(true)
+
     setPos({
       left: x,
       top: y,
-      width: "0",
-      height: "0",
+      width: "50",
+      height: "50",
     })
 
     console.log(e)
@@ -47,15 +43,19 @@ export const Game = () => {
     console.log("endX: ")
   }
 
+  const boxMove = (e) => {
+    if (mouseDown) {
+      console.log("hej")
+    } else return
+  }
+
   return (
-    <div className="game">
+    <div className="game" onMouseDown={(e) => startPos(e)}>
       <div
-        ref={boxRef}
         className="user--guess"
         style={boxStyles}
-        onMouseDown={(e) => startPos(e)}
         // onMouseUp={(e) => endPos(e)}
-        // onMouseMove={() => console.log("HI")}
+        onMouseMove={(e) => boxMove(e)}
       ></div>
     </div>
   )

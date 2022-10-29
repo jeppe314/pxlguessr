@@ -24,39 +24,42 @@ export const Game = () => {
     const y = e.clientY - el.top
 
     setMouseDown(true)
+    console.log(x)
+    console.log(y)
 
     setPos({
+      ...pos,
       left: x,
       top: y,
-      width: "50",
-      height: "50",
     })
-
-    console.log(e)
   }
 
-  const endPos = (e) => {
+  const boxMove = (e) => {
     const el = e.target.getBoundingClientRect()
     const x = e.clientX - el.left
     const y = e.clientY - el.top
 
-    console.log("endX: ")
-  }
-
-  const boxMove = (e) => {
     if (mouseDown) {
-      console.log("hej")
+      console.log("moved x: " + x)
+      console.log("moved y: " + y)
+      setPos({
+        ...pos,
+        width: x + "px",
+        height: y + "px",
+      })
     } else return
   }
 
   return (
-    <div className="game" onMouseDown={(e) => startPos(e)}>
-      <div
-        className="user--guess"
-        style={boxStyles}
-        // onMouseUp={(e) => endPos(e)}
-        onMouseMove={(e) => boxMove(e)}
-      ></div>
+    <div
+      className="game"
+      onMouseDown={(e) => startPos(e)}
+      onMouseMove={(e) => boxMove(e)}
+      onMouseUp={(e) => {
+        setMouseDown(false)
+      }}
+    >
+      <div className="user--guess" style={boxStyles}></div>
     </div>
   )
 }

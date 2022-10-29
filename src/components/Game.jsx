@@ -1,19 +1,16 @@
-import React from "react"
+import React, { useState, useRef } from "react"
+import { createElement } from "react"
 
 export const Game = () => {
-  const pos = {
-    x: 0,
-    y: 0,
-  }
+
+  const draw = () => {}
 
   return (
     <div
       className="game"
-      onPointerDown={() => console.log("DOWN")}
-      onPointerUp={() => console.log("UP")}
-      onPointerMove={(e) => console.log(e.screenX)}
+      onDrag={() => console.log("dragging lol")}
+      onClick={() => draw()}
     >
-      Game
     </div>
   )
 }

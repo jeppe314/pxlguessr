@@ -40,6 +40,15 @@ export const Game = () => {
       })
     } else return
   }
+  //FIXME
+
+  const boxGuess = (e) => {
+    setMouseDown(false)
+    setGameState((prev) => ({
+      widthGuesses: [...prev.widthGuesses, boxStyles.width],
+      heightGuesses: [...prev.heightGuesses, boxStyles.height],
+    }))
+  }
 
   return (
     <div
@@ -47,7 +56,7 @@ export const Game = () => {
       onMouseDown={(e) => startPos(e)}
       onMouseMove={(e) => boxMove(e)}
       onMouseUp={(e) => {
-        setMouseDown(false)
+        boxGuess(e)
       }}
     >
       <div className="user--guess" style={boxStyles}></div>

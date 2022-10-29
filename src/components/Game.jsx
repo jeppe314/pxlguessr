@@ -17,22 +17,25 @@ export const Game = () => {
     setBoxStyles({
       width: "0px",
       height: "0px",
-      left: e.clientX + "px",
-      top: e.clientY - el.top + "px",
+      left: e.clientX,
+      top: e.clientY - el.top,
     })
   }
 
   const boxMove = (e) => {
     const relX = e.clientX - rect.left
     const relY = e.clientY - rect.top
-    // const x = e.clientX
-    //TODO: something minus x to draw width in the other way
     if (mouseDown) {
       setBoxStyles({
-        ...boxStyles,
+        left:
+          boxStyles.left >= e.clientX ? e.clientX : boxStyles.left,
+
+        top: boxStyles.top >= e.clientY ? e.clientY : boxStyles.top,
         width: relX >= 0 ? relX : relX + -(2 * relX),
         height: relY >= 0 ? relY : relY + -(2 * relY),
       })
+
+      console.log(e.clientX + "::" + boxStyles.left)
     } else return
   }
 

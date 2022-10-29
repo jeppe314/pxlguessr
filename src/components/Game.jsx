@@ -24,8 +24,6 @@ export const Game = () => {
     const y = e.clientY - el.top
 
     setMouseDown(true)
-    console.log(x)
-    console.log(y)
 
     setPos({
       ...pos,
@@ -36,8 +34,8 @@ export const Game = () => {
 
   const boxMove = (e) => {
     const el = e.target.getBoundingClientRect()
-    const x = e.clientX - el.left
-    const y = e.clientY - el.top
+    const x = Math.round(e.clientX - el.left)
+    const y = Math.round(e.clientY - el.top)
 
     if (mouseDown) {
       console.log("moved x: " + x)

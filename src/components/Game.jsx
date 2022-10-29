@@ -20,28 +20,25 @@ export const Game = () => {
   }
 
   const startPos = (e) => {
+    setMouseDown(true)
     const el = e.target.getBoundingClientRect()
 
     setRect({
-      left: el.left,
-      top: el.top,
+      left: e.clientX,
+      top: e.clientY,
     })
 
     setBox({
       width: "0px",
       height: "0px",
-      left: e.clientX + "px",
-      top: e.clientY - el.top + "px",
+      left: e.clientX,
+      top: e.clientY - el.top,
     })
-    setMouseDown(true)
+    console.log(rect.left)
   }
 
-  //TODO: Fix this shit FIXME
-
   const boxMove = (e) => {
-    console.log(box)
-
-    const relX = e.clientX
+    const relX = e.clientX - rect.left
     const relY = e.clientY - rect.top
     if (mouseDown) {
       setBox({

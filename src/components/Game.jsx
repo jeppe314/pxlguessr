@@ -3,21 +3,7 @@ import React, { useState, useRef, useEffect } from "react"
 export const Game = () => {
   const [mouseDown, setMouseDown] = useState(false)
   const [rect, setRect] = useState({})
-
-  const [box, setBox] = useState({
-    top: "0px",
-    left: "0px",
-    width: "0px",
-    height: "0px",
-  })
-
-  const boxStyles = {
-    backgroundColor: "yellow",
-    top: box.top,
-    left: box.left,
-    width: box.width,
-    height: box.height,
-  }
+  const [boxStyles, setBoxStyles] = useState({})
 
   const startPos = (e) => {
     setMouseDown(true)
@@ -28,23 +14,24 @@ export const Game = () => {
       top: e.clientY,
     })
 
-    setBox({
+    setBoxStyles({
       width: "0px",
       height: "0px",
-      left: e.clientX,
-      top: e.clientY - el.top,
+      left: e.clientX + "px",
+      top: e.clientY - el.top + "px",
     })
-    console.log(rect.left)
   }
 
   const boxMove = (e) => {
     const relX = e.clientX - rect.left
     const relY = e.clientY - rect.top
+    // const x = e.clientX
+    //TODO: something minus x to draw width in the other way
     if (mouseDown) {
-      setBox({
-        ...box,
-        width: relX + "px",
-        height: relY + "px",
+      setBoxStyles({
+        ...boxStyles,
+        width: relX >= 0 ? relX : relX + -(2 * relX),
+        height: relY >= 0 ? relY : relY + -(2 * relY),
       })
     } else return
   }

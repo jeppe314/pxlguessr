@@ -132,6 +132,7 @@ $headerBg: rgb(53, 51, 51);
   flex: 5;
   background: $background;
   position: relative;
+  cursor: crosshair;
 
   .good--luck {
     position: absolute;
@@ -160,6 +161,7 @@ $headerBg: rgb(53, 51, 51);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    cursor: default;
 
     .feedback--stats {
       height: 100%;

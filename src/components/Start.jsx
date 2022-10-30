@@ -1,4 +1,5 @@
 import React from "react"
+import { Btn } from "./Btn"
 
 import { Title } from "./Title"
 
@@ -13,7 +14,7 @@ export const Start = () => {
           given and receive a score based on how close you are. The
           lower the score... the better! Sounds easy, right? Pixactly.
         </p>
-        <button>Start Game</button>
+        <Btn>Start Game</Btn>
       </div>
     </div>
   )

@@ -84,7 +84,9 @@ export const Feedback = ({ boxStyles, setBoxStyles }) => {
             )
           </p>
         </div>
-        <Btn handleClick={() => nextRound()}>Next round</Btn>
+        <Btn handleClick={() => nextRound()}>
+          {round === 5 ? "See results" : "Next round"}
+        </Btn>
       </div>
     </div>
   )

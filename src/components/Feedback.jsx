@@ -62,22 +62,24 @@ export const Feedback = ({ boxStyles, setBoxStyles }) => {
           <p>
             Width:{" "}
             <span style={{ color: "white" }}>
-              {widthGuesses[curr]} (
-              <span style={resultStyle}>
-                {widthDiff > 0 && "+"}
-                {widthDiff}
-              </span>
+              {widthGuesses[curr]}{" "}
+            </span>
+            (
+            <span style={resultStyle}>
+              {widthDiff > 0 && "+"}
+              {widthDiff}
             </span>
             )
           </p>
           <p>
             Height:{" "}
             <span style={{ color: "white" }}>
-              {heightGuesses[curr]} (
-              <span style={resultStyle}>
-                {heightDiff > 0 && "+"}
-                {heightDiff}
-              </span>
+              {heightGuesses[curr]}{" "}
+            </span>
+            (
+            <span style={resultStyle}>
+              {heightDiff > 0 && "+"}
+              {heightDiff}
             </span>
             )
           </p>

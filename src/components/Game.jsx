@@ -21,6 +21,15 @@ export const Game = () => {
     heightDiff,
   } = gameState
 
+  function difference(a, b) {
+    return Math.abs(a - b)
+  }
+
+  const roundDiff = difference(
+    widthGuesses[curr] + heightGuesses[curr],
+    targetHeights[curr] + targetWidths[curr]
+  )
+
   const startPos = (e) => {
     if (!guessed) {
       setMouseDown(true)
@@ -59,12 +68,13 @@ export const Game = () => {
 
   const boxGuess = (e) => {
     setMouseDown(false)
-    if (!guessed) {
+    if (!guessed && boxStyles.width > 0 && boxStyles.height > 0) {
       setGameState((prev) => ({
         ...prev,
         guessed: true,
         widthGuesses: [...prev.widthGuesses, boxStyles.width],
         heightGuesses: [...prev.heightGuesses, boxStyles.height],
+        score: prev.score + roundDiff,
       }))
     }
   }

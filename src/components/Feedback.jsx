@@ -47,21 +47,39 @@ export const Feedback = ({ boxStyles, setBoxStyles }) => {
     console.log(gameState)
   }
 
+  const resultStyle = {
+    color: "#da3c3c",
+  }
+
   return (
     <div className="feedback">
       <div className="feedback--stats">
         <h1>{feedbackQuotes[5]}</h1>
         <p>
-          You were off by <span>{roundDiff} pxls</span>
+          You were off by <span style={resultStyle}>{roundDiff}</span>
         </p>
         <div style={{ display: "flex", gap: "2em" }}>
           <p>
-            Width: {widthGuesses[curr]}px ({widthDiff > 0 && "+"}
-            {widthDiff}px)
+            Width:{" "}
+            <span style={{ color: "white" }}>
+              {widthGuesses[curr]} (
+              <span style={resultStyle}>
+                {widthDiff > 0 && "+"}
+                {widthDiff}
+              </span>
+            </span>
+            )
           </p>
           <p>
-            Height: {heightGuesses[curr]}px ({heightDiff > 0 && "+"}
-            {heightDiff}px)
+            Height:{" "}
+            <span style={{ color: "white" }}>
+              {heightGuesses[curr]} (
+              <span style={resultStyle}>
+                {heightDiff > 0 && "+"}
+                {heightDiff}
+              </span>
+            </span>
+            )
           </p>
         </div>
         <Btn handleClick={() => nextRound()}>Next round</Btn>

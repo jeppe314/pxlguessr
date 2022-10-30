@@ -4,6 +4,8 @@ import { GameContext } from "../contexts/GameContext"
 
 export const Header = () => {
   const { gameState, setGameState } = useContext(GameContext)
+  const { round, targetHeights, targetWidths, score } = gameState
+  const curr = round - 1
   return (
     <div className="header">
       <div className="header--content">
@@ -13,19 +15,21 @@ export const Header = () => {
           </p>
         </div>
         <div className="header--mid">
-          {/* <Title /> */}
           <div className="header--target">
             <p>
-              <span>Width: </span>25px
+              <span>Width: </span>
+              {targetWidths[curr]}px
             </p>
             <p>
-              <span>Height: </span>35px
+              <span>Height: </span>
+              {targetHeights[curr]}px
             </p>
           </div>
         </div>
         <div>
           <p>
-            <span>Score: </span>0
+            <span>Score: </span>
+            {score}
           </p>
         </div>
       </div>

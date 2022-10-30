@@ -17,7 +17,7 @@ export const GameContextProvider = ({ children }) => {
     started: false,
     round: 1,
     targetHeights: randomIntFromInterval(20, 50, 5),
-    targetWidths57: randomIntFromInterval(20, 50, 5),
+    targetWidths: randomIntFromInterval(20, 50, 5),
     widthGuesses: [],
     heightGuesses: [],
     score: 0,

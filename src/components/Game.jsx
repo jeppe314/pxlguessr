@@ -60,6 +60,7 @@ export const Game = () => {
         boxGuess(e)
       }}
     >
+      <h1 className="good--luck">Good luck!</h1>
       <div className="user--guess" style={boxStyles}></div>
     </div>
   )

@@ -7,7 +7,7 @@ export const Header = () => {
       <div>
         <p>Round 1/5</p>
       </div>
-      <div>
+      <div className="header--mid">
         <Title />
         <div className="header--target">
           <p>Width: 25px</p>

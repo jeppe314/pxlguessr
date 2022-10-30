@@ -83,6 +83,27 @@ $headerBg: rgb(53, 51, 51);
   flex: 1;
   background-color: $headerBg;
   border-bottom: 1px solid rgb(99, 90, 90);
+  display: flex;
+  justify-content: space-around;
+  padding: 1em;
+  font-size: 0.8em;
+
+  .header--mid {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1em;
+    .title {
+      margin-top: 1em;
+    }
+    .header--target {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
 }
 
 .title {
@@ -91,7 +112,7 @@ $headerBg: rgb(53, 51, 51);
 }
 
 .game {
-  flex: 4;
+  flex: 5;
   background: $background;
   position: relative;
 }

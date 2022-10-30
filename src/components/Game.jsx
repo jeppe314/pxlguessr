@@ -45,6 +45,7 @@ export const Game = () => {
   const boxGuess = (e) => {
     setMouseDown(false)
     setGameState((prev) => ({
+      ...prev,
       widthGuesses: [...prev.widthGuesses, boxStyles.width],
       heightGuesses: [...prev.heightGuesses, boxStyles.height],
     }))

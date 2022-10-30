@@ -120,6 +120,11 @@ $headerBg: rgb(53, 51, 51);
   font-family: "Press Start 2P", sans;
   z-index: 1;
   transition: all 0.8s ease-out;
+  transform-origin: bottom left;
+}
+
+.stretch {
+  animation: stretch 5s 1s;
 }
 
 .top {
@@ -205,6 +210,30 @@ $headerBg: rgb(53, 51, 51);
   .result--rounds {
     display: flex;
     gap: 1em;
+  }
+}
+
+@keyframes stretch {
+  0% {
+    transform: translate(-50%, -50%) scale(1, 1);
+  }
+  10% {
+    transform: translate(-50%, -50%) scale(1, 2);
+  }
+  25% {
+    transform: translate(-50%, -50%) scale(1, 1);
+  }
+  35% {
+    transform: translate(-50%, -50%) scale(1.5, 1);
+  }
+  55% {
+    transform: translate(-50%, -50%) scale(1, 1);
+  }
+  75% {
+    transform: translate(-50%, -50%) scale(1.5, 2);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1, 1);
   }
 }
 

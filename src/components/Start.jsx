@@ -4,7 +4,7 @@ import { Title } from "./Title"
 import { GameContext } from "../contexts/GameContext"
 
 export const Start = () => {
-  const { start, setStart } = useContext(GameContext)
+  const { gameState, setGameState } = useContext(GameContext)
 
   return (
     <div className="start">
@@ -21,7 +21,13 @@ export const Start = () => {
           <br />
           Pixactly.
         </p>
-        <Btn handleClick={() => setStart(true)}>Start Game</Btn>
+        <Btn
+          handleClick={() =>
+            setGameState((prev) => ({ ...prev, started: true }))
+          }
+        >
+          Start Game
+        </Btn>
       </div>
     </div>
   )

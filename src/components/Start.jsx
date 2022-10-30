@@ -1,9 +1,11 @@
-import React from "react"
+import React, { useState, useContext } from "react"
 import { Btn } from "./Btn"
-
 import { Title } from "./Title"
+import { GameContext } from "../contexts/GameContext"
 
 export const Start = () => {
+  const { start, setStart } = useContext(GameContext)
+
   return (
     <div className="start">
       <div className="start--content">
@@ -20,7 +22,7 @@ export const Start = () => {
           <br />
           Pixactly.
         </p>
-        <Btn>Start Game</Btn>
+        <Btn handleClick={() => setStart(true)}>Start Game</Btn>
       </div>
     </div>
   )

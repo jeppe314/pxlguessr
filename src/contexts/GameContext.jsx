@@ -21,13 +21,17 @@ export const GameContextProvider = ({ children }) => {
     targetWidths: randomIntFromInterval(20, 50, 5),
     widthGuesses: [],
     heightGuesses: [],
+    widthDiff: [],
+    heightDiff: [],
     roundScore: [],
     score: 0,
   })
 
+  const curr = gameState.round - 1
+
   return (
     <GameContext.Provider
-      value={{ gameState, setGameState, start, setStart }}
+      value={{ gameState, setGameState, start, setStart, curr }}
     >
       {children}
     </GameContext.Provider>

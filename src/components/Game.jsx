@@ -16,23 +16,31 @@ export const Game = () => {
     targetHeights,
     targetWidths,
     started,
+    roundScore,
+    curr,
   } = gameState
 
+  function difference(a, b) {
+    return Math.abs(a - b)
+  }
+
   const startPos = (e) => {
-    setMouseDown(true)
-    const el = e.target.getBoundingClientRect()
+    if (!guessed) {
+      setMouseDown(true)
+      const el = e.target.getBoundingClientRect()
 
-    setRect({
-      left: e.clientX,
-      top: e.clientY,
-    })
+      setRect({
+        left: e.clientX,
+        top: e.clientY,
+      })
 
-    setBoxStyles({
-      width: "0px",
-      height: "0px",
-      left: e.clientX,
-      top: e.clientY - el.top,
-    })
+      setBoxStyles({
+        width: "0px",
+        height: "0px",
+        left: e.clientX,
+        top: e.clientY - el.top,
+      })
+    } else return
   }
 
   const boxMove = (e) => {
@@ -60,6 +68,8 @@ export const Game = () => {
         guessed: true,
         widthGuesses: [...prev.widthGuesses, boxStyles.width],
         heightGuesses: [...prev.heightGuesses, boxStyles.height],
+        widthDiff: [...prev.widthDiff, difference(5, 11)],
+        heightDiff: [...prev.heightDiff, difference(7, 2)],
       }))
     }
     console.log(gameState)

@@ -61,9 +61,7 @@ $headerBg: rgb(53, 51, 51);
     flex-direction: column;
     text-align: center;
     align-items: center;
-    // .title {
-    //   font-size: 3em;
-    // }
+
     .start--content--text {
       width: 100%;
       font-size: 0.8em;
@@ -121,7 +119,7 @@ $headerBg: rgb(53, 51, 51);
   color: yellow;
   font-family: "Press Start 2P", sans;
   z-index: 1;
-  transition: all 1s ease-out;
+  transition: all 0.8s ease-out;
 }
 
 .top {
@@ -142,7 +140,7 @@ $headerBg: rgb(53, 51, 51);
     transform: translate(-50%, -50%);
     font-size: 3em;
     animation: disappear 1s forwards;
-    animation-delay: 1.5s;
+    animation-delay: 1s;
   }
 
   @keyframes disappear {

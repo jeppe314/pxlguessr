@@ -1,9 +1,33 @@
-@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Press+Start+2P&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Poppins:wght@300;400;500&family=Press+Start+2P&display=swap");
+
+$btn-primary: rgba(40, 192, 48, 0.11);
+$btn-primary-fulll: rgba(40, 192, 48);
+$btn-hover: rgb(72, 222, 72);
+$btn-text: rgb(51, 192, 164);
+$background: rgb(63, 63, 63);
+$headerBg: rgb(53, 51, 51);
 
 * {
+  font-family: "Poppins", sans;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.btn {
+  font-size: 1em;
+  width: 30%;
+  background-color: $btn-primary;
+  padding: 0.5em 2em;
+  border: 1px solid $btn-text;
+  border-radius: 10px;
+  cursor: pointer;
+  color: $btn-text;
+  // TODO Dropshadow
+  &:hover {
+    background-color: $btn-text;
+    color: $background;
+  }
 }
 
 .container {
@@ -17,26 +41,58 @@
   align-items: center;
 }
 
-.container * {
+.game,
+.header,
+.start {
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.header {
-  flex: 1;
-  background-color: black;
-  font-family: "Press Start 2P", sans;
+.start {
+  width: 100%;
+  background-color: $background;
+  .start--content {
+    height: 50%;
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    .title {
+      font-size: 3em;
+    }
+    .start--content--text {
+      width: 100%;
+      font-size: 0.8em;
+    }
+  }
 }
 
-.header--title {
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.header {
+  flex: 1;
+  background-color: $headerBg;
+  border-bottom: 1px solid rgb(99, 90, 90);
+}
+
+.title {
   color: yellow;
+  font-family: "Press Start 2P", sans;
 }
 
 .game {
   flex: 4;
-  background: rgb(23, 22, 22);
+  background: $background;
   position: relative;
 }
 

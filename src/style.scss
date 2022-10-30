@@ -170,7 +170,6 @@ $headerBg: rgb(53, 51, 51);
       flex-direction: column;
       align-items: center;
       justify-content: space-around;
-
       h1 {
         font-size: 3em;
         font-style: italic;
@@ -179,9 +178,28 @@ $headerBg: rgb(53, 51, 51);
   }
 
   .user--guess {
-    background-color: rgb(222, 206, 23);
     position: absolute;
     top: 0;
     left: 0;
+    animation: backgroundColorPalette 10s infinite;
+    opacity: 0.5;
+  }
+}
+
+@keyframes backgroundColorPalette {
+  0% {
+    background: #ee6055;
+  }
+  25% {
+    background: #60d394;
+  }
+  50% {
+    background: #aaf683;
+  }
+  75% {
+    background: #ffd97d;
+  }
+  100% {
+    background: #ff9b85;
   }
 }

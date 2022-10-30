@@ -12,7 +12,6 @@ export const Feedback = ({ boxStyles, setBoxStyles }) => {
     round,
     roundScores,
     guessed,
-    score,
   } = gameState
 
   const curr = round - 1

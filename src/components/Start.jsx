@@ -1,10 +1,9 @@
-import React, { useState, useContext } from "react"
+import React, { useContext } from "react"
 import { Btn } from "./Btn"
-import { Title } from "./Title"
 import { GameContext } from "../contexts/GameContext"
 
 export const Start = () => {
-  const { gameState, setGameState } = useContext(GameContext)
+  const { setGameState } = useContext(GameContext)
 
   return (
     <div className="start">

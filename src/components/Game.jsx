@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef, useEffect } from "react"
+import React, { useContext, useState } from "react"
 import { GameContext } from "../contexts/GameContext"
 import { Feedback } from "./Feedback"
 
@@ -8,17 +8,11 @@ export const Game = () => {
   const [boxStyles, setBoxStyles] = useState({})
   const { gameState, setGameState, curr } = useContext(GameContext)
   const {
-    round,
-    score,
     widthGuesses,
     heightGuesses,
     guessed,
     targetHeights,
     targetWidths,
-    started,
-    roundScore,
-    widthDiff,
-    heightDiff,
   } = gameState
 
   function difference(a, b) {

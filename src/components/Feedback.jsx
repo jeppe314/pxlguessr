@@ -18,6 +18,14 @@ export const Feedback = ({ boxStyles, setBoxStyles }) => {
     return Math.abs(a - b)
   }
 
+  const feedbackQuotes = {
+    1: "WOW!! That was inch perfect!",
+    2: "Very impressive! That was a great guess!",
+    3: "Good guess!",
+    4: "That was... below par.",
+    5: "Come on... Can you atleast try?",
+  }
+
   const heightDiff = heightGuesses[curr] - targetHeights[curr]
   const widthDiff = widthGuesses[curr] - targetWidths[curr]
   const roundDiff = difference(
@@ -42,7 +50,7 @@ export const Feedback = ({ boxStyles, setBoxStyles }) => {
   return (
     <div className="feedback">
       <div className="feedback--stats">
-        <h1>Good job! Close!</h1>
+        <h1>{feedbackQuotes[5]}</h1>
         <p>
           You were off by <span>{roundDiff} pxls</span>
         </p>

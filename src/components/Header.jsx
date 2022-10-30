@@ -29,11 +29,17 @@ export const Header = () => {
           </div>
         </div>
         <div>
-          <div style={{display: "flex", gap: "1em", alignItems: "center"}}>
-            <Btn style={{borderRadius: "5px", padding: ".5em"}}>
-              <IoMdArrowDropdown style={{display: "flex"}}/>
+          <div
+            style={{
+              display: "flex",
+              gap: "1em",
+              alignItems: "center",
+            }}
+          >
+            <Btn style={{ borderRadius: "5px", padding: ".5em" }}>
+              <IoMdArrowDropdown style={{ display: "flex" }} />
             </Btn>
-            <p>
+            <p style={{ color: "#da3c3c" }}>
               <span>Score: </span>
               {score}
             </p>

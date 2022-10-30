@@ -16,7 +16,6 @@ $headerBg: rgb(53, 51, 51);
 
 .btn {
   font-size: 1em;
-  width: 30%;
   background-color: $btn-primary;
   padding: 0.5em 2em;
   border: 1px solid $btn-text;
@@ -83,9 +82,6 @@ $headerBg: rgb(53, 51, 51);
   flex: 1;
   background-color: $headerBg;
   border-bottom: 1px solid rgb(99, 90, 90);
-  //   display: flex;
-  //   justify-content: space-around;
-  //   align-items: flex-end;
   padding: 1em;
   font-size: 0.8em;
 
@@ -140,6 +136,10 @@ $headerBg: rgb(53, 51, 51);
   position: relative;
 
   .good--luck {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     font-size: 3em;
     animation: disappear 1s forwards;
     animation-delay: 1.5s;
@@ -151,6 +151,32 @@ $headerBg: rgb(53, 51, 51);
     }
     to {
       opacity: 0;
+    }
+  }
+
+  .feedback {
+    height: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;
+    // justify-content: space-around;
+
+    .feedback--stats {
+      height: 100%;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+
+      h1 {
+        font-size: 3em;
+        font-style: italic;
+      }
     }
   }
 

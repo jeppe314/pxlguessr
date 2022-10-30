@@ -7,12 +7,13 @@ import { GameContext } from "./contexts/GameContext"
 import { Title } from "./components/Title"
 
 function App() {
-  const { start, setStart } = useContext(GameContext)
+  const { gameState } = useContext(GameContext)
+  const { started } = gameState
 
   return (
     <div className="container">
       <Title />
-      {start ? (
+      {started ? (
         <div className="wrapper">
           <Header />
           <Game />

@@ -7,17 +7,25 @@ export const Header = () => {
   return (
     <div className="header">
       <div>
-        <p>Round {`${gameState.round}/5`}</p>
+        <p>
+          <span>Round: </span> {`${gameState.round}/5`}
+        </p>
       </div>
       <div className="header--mid">
-        <Title />
+        {/* <Title /> */}
         <div className="header--target">
-          <p>Width: 25px</p>
-          <p>Height: 35px</p>
+          <p>
+            <span>Width: </span>25px
+          </p>
+          <p>
+            <span>Height: </span>35px
+          </p>
         </div>
       </div>
       <div>
-        <p>Total score: 0</p>
+        <p>
+          <span>Score: </span>0
+        </p>
       </div>
     </div>
   )

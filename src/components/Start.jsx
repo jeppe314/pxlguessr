@@ -9,7 +9,6 @@ export const Start = () => {
   return (
     <div className="start">
       <div className="start--content">
-        <Title />
         <p className="start--content--text">
           Welcome to Pixactly.
           <br />

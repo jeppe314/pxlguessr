@@ -1,5 +1,7 @@
-import React from "react"
+import React, { useContext } from "react"
+import { GameContext } from "../contexts/GameContext"
 
 export const Title = () => {
-  return <h1 className="title">PxlGuessr</h1>
+  const { start } = useContext(GameContext)
+  return <h1 className={`title ${start && "top"}`}>PxlGuessr</h1>
 }

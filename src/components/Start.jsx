@@ -10,16 +10,16 @@ export const Start = () => {
     <div className="start">
       <div className="start--content">
         <p className="start--content--text">
-          Welcome to Pixactly.
+          Welcome to PxlGuessr.
           <br />
-          An online tool that tests how well you know your pixels.
+          Call yourself a <i>web developer</i>?
           <br />
+          Ok then, how big is a pixel? You should know this.
           <br />
-          Draw a box that matches the dimensions given and receive a
-          score based on how close you are. The lower the score... the
-          better! Sounds easy, right?
+          Draw a box that fits the dimensions given from the game. The
+          lower the score, the better.
           <br />
-          Pixactly.
+          You can do this, right?
         </p>
         <Btn
           handleClick={() =>

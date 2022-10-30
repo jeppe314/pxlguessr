@@ -63,7 +63,7 @@ $headerBg: rgb(53, 51, 51);
     align-items: center;
 
     .start--content--text {
-      width: 100%;
+      width: 70%;
       font-size: 0.8em;
     }
   }
@@ -127,6 +127,10 @@ $headerBg: rgb(53, 51, 51);
   animation: stretch 5s 1s;
 }
 
+.colorShift {
+  animation: textColorPalette 10s infinite;
+}
+
 .top {
   font-size: 1.5em;
   top: 7%;
@@ -147,17 +151,6 @@ $headerBg: rgb(53, 51, 51);
     font-size: 3em;
     animation: disappear 1s forwards;
     animation-delay: 1s;
-  }
-
-  @keyframes disappear {
-    from {
-      opacity: 1;
-      visibility: visible;
-    }
-    to {
-      opacity: 0;
-      visibility: hidden;
-    }
   }
 
   .feedback {
@@ -252,5 +245,34 @@ $headerBg: rgb(53, 51, 51);
   }
   100% {
     background: #ff9b85;
+  }
+}
+
+@keyframes textColorPalette {
+  0% {
+    color: #ee6055;
+  }
+  25% {
+    color: #60d394;
+  }
+  50% {
+    color: #aaf683;
+  }
+  75% {
+    color: #ffd97d;
+  }
+  100% {
+    color: #ff9b85;
+  }
+}
+
+@keyframes disappear {
+  from {
+    opacity: 1;
+    visibility: visible;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
   }
 }

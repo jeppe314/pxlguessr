@@ -16,6 +16,10 @@ export const Result = () => {
     )
   })
 
+  const playAgain = () => {
+    console.log("OIAS")
+  }
+
   return (
     <div className="result">
       <div className="result--score">
@@ -24,7 +28,7 @@ export const Result = () => {
         <h1>{score}!</h1>
       </div>
       <div className="result--rounds">{rounds}</div>
-      <Btn>Play again</Btn>
+      <Btn handleClick={playAgain}>Play again</Btn>
     </div>
   )
 }

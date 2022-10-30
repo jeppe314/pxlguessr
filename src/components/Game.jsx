@@ -1,5 +1,6 @@
 import React, { useContext, useState, useRef, useEffect } from "react"
 import { GameContext } from "../contexts/GameContext"
+import { Feedback } from "./Feedback"
 
 export const Game = () => {
   const [mouseDown, setMouseDown] = useState(false)
@@ -62,6 +63,7 @@ export const Game = () => {
     >
       <h1 className="good--luck">Good luck!</h1>
       <div className="user--guess" style={boxStyles}></div>
+      <Feedback />
     </div>
   )
 }

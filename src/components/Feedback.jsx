@@ -8,6 +8,7 @@ export const Feedback = () => {
   const nextRound = () => {
     setGameState((prev) => ({
       ...prev,
+      guessed: false,
       round: prev.round + 1,
     }))
     console.log(gameState)

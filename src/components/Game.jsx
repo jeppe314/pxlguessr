@@ -7,6 +7,16 @@ export const Game = () => {
   const [rect, setRect] = useState({})
   const [boxStyles, setBoxStyles] = useState({})
   const { gameState, setGameState } = useContext(GameContext)
+  const {
+    round,
+    score,
+    widthGuesses,
+    heightGuesses,
+    guessed,
+    targetHeights,
+    targetWidths,
+    started,
+  } = gameState
 
   const startPos = (e) => {
     setMouseDown(true)
@@ -44,11 +54,14 @@ export const Game = () => {
 
   const boxGuess = (e) => {
     setMouseDown(false)
-    setGameState((prev) => ({
-      ...prev,
-      widthGuesses: [...prev.widthGuesses, boxStyles.width],
-      heightGuesses: [...prev.heightGuesses, boxStyles.height],
-    }))
+    if (!guessed) {
+      setGameState((prev) => ({
+        ...prev,
+        guessed: true,
+        widthGuesses: [...prev.widthGuesses, boxStyles.width],
+        heightGuesses: [...prev.heightGuesses, boxStyles.height],
+      }))
+    }
     console.log(gameState)
   }
 
@@ -63,7 +76,7 @@ export const Game = () => {
     >
       <h1 className="good--luck">Good luck!</h1>
       <div className="user--guess" style={boxStyles}></div>
-      <Feedback />
+      {guessed && <Feedback />}
     </div>
   )
 }

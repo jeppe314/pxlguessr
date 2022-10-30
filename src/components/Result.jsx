@@ -4,7 +4,7 @@ import { nanoid } from "nanoid"
 import { Btn } from "./Btn"
 
 export const Result = () => {
-  const { gameState } = useContext(GameContext)
+  const { gameState, setGameState } = useContext(GameContext)
   const { score, roundScores } = gameState
 
   const rounds = roundScores.map((round, index) => {
@@ -17,7 +17,10 @@ export const Result = () => {
   })
 
   const playAgain = () => {
-    console.log("OIAS")
+    setGameState((prev) => ({
+      ...prev,
+      round: 1,
+    }))
   }
 
   return (

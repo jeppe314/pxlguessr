@@ -5,6 +5,10 @@ export const Title = () => {
   const { gameState } = useContext(GameContext)
   const { started } = gameState
   return (
-    <h1 className={`title stretch ${started && "top"}`}>PxlGuessr</h1>
+    <h1
+      className={`title ${!started && "stretch"} ${started && "top"}`}
+    >
+      PxlGuessr
+    </h1>
   )
 }

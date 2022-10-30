@@ -1,5 +1,7 @@
 import React, { useContext } from "react"
 import { GameContext } from "../contexts/GameContext"
+import { IoMdArrowDropdown } from "react-icons/io"
+import { Btn } from "./Btn"
 
 export const Header = () => {
   const { gameState } = useContext(GameContext)
@@ -27,10 +29,15 @@ export const Header = () => {
           </div>
         </div>
         <div>
-          <p>
-            <span>Score: </span>
-            {score}
-          </p>
+          <div style={{display: "flex", gap: "1em", alignItems: "center"}}>
+            <Btn style={{borderRadius: "5px", padding: ".5em"}}>
+              <IoMdArrowDropdown style={{display: "flex"}}/>
+            </Btn>
+            <p>
+              <span>Score: </span>
+              {score}
+            </p>
+          </div>
         </div>
       </div>
     </div>

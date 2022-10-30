@@ -1,5 +1,5 @@
 import React from "react"
-import { HeaderTitle } from "./HeaderTitle"
+import { Title } from "./Title"
 
 export const Header = () => {
   return (

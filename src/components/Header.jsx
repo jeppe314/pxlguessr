@@ -1,11 +1,13 @@
-import React from "react"
+import React, { useContext } from "react"
 import { Title } from "./Title"
+import { GameContext } from "../contexts/GameContext"
 
 export const Header = () => {
+  const { gameState, setGameState } = useContext(GameContext)
   return (
     <div className="header">
       <div>
-        <p>Round 1/5</p>
+        <p>Round {`${gameState.round}/5`}</p>
       </div>
       <div className="header--mid">
         <Title />

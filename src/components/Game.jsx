@@ -6,7 +6,6 @@ export const Game = () => {
   const [rect, setRect] = useState({})
   const [boxStyles, setBoxStyles] = useState({})
   const { gameState, setGameState } = useContext(GameContext)
-  console.log(gameState)
 
   const startPos = (e) => {
     setMouseDown(true)
@@ -49,6 +48,7 @@ export const Game = () => {
       widthGuesses: [...prev.widthGuesses, boxStyles.width],
       heightGuesses: [...prev.heightGuesses, boxStyles.height],
     }))
+    console.log(gameState)
   }
 
   return (

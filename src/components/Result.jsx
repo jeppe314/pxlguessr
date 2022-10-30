@@ -20,6 +20,12 @@ export const Result = () => {
     setGameState((prev) => ({
       ...prev,
       round: 1,
+      score: 0,
+      roundScores: [],
+      widthGuesses: [],
+      heightGuesses: [],
+      widthDiff: [],
+      heightDiff: [],
     }))
   }
 

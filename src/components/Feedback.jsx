@@ -34,10 +34,8 @@ export const Feedback = ({ boxStyles, setBoxStyles }) => {
 
   const heightDiff = heightGuesses[curr] - targetHeights[curr]
   const widthDiff = widthGuesses[curr] - targetWidths[curr]
-  const thisRound = difference(
-    widthGuesses[curr] + heightGuesses[curr],
-    targetHeights[curr] + targetWidths[curr]
-  )
+  const thisRound = Math.abs(heightDiff) + Math.abs(widthDiff)
+
   useEffect(() => {
     setGameState((prev) => ({
       ...prev,

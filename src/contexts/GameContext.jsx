@@ -13,6 +13,10 @@ export const GameContextProvider = ({ children }) => {
     return arr
   }
 
+  function sumArr(arr) {
+    arr.reduce((partialSum, a) => partialSum + a, 0)
+  }
+
   const [gameState, setGameState] = useState({
     started: false,
     guessed: false,
@@ -23,7 +27,7 @@ export const GameContextProvider = ({ children }) => {
     heightGuesses: [],
     widthDiff: [],
     heightDiff: [],
-    roundScore: [],
+    roundScores: [],
     score: 0,
   })
 

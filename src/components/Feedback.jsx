@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useEffect } from "react"
 import { GameContext } from "../contexts/GameContext"
 import { Btn } from "./Btn"
 
@@ -10,12 +10,19 @@ export const Feedback = ({ boxStyles, setBoxStyles }) => {
     targetHeights,
     targetWidths,
     round,
+    roundScores,
+    guessed,
+    score,
   } = gameState
 
   const curr = round - 1
 
   function difference(a, b) {
     return Math.abs(a - b)
+  }
+
+  function sumArr(arr) {
+    return arr.reduce((partialSum, a) => partialSum + a, 0)
   }
 
   const feedbackQuotes = {
@@ -28,10 +35,17 @@ export const Feedback = ({ boxStyles, setBoxStyles }) => {
 
   const heightDiff = heightGuesses[curr] - targetHeights[curr]
   const widthDiff = widthGuesses[curr] - targetWidths[curr]
-  const roundDiff = difference(
+  const thisRound = difference(
     widthGuesses[curr] + heightGuesses[curr],
     targetHeights[curr] + targetWidths[curr]
   )
+  useEffect(() => {
+    setGameState((prev) => ({
+      ...prev,
+      roundScores: [...roundScores, thisRound],
+      score: sumArr(prev.roundScores),
+    }))
+  }, [guessed])
 
   const nextRound = () => {
     setGameState((prev) => ({
@@ -56,7 +70,8 @@ export const Feedback = ({ boxStyles, setBoxStyles }) => {
       <div className="feedback--stats">
         <h1>{feedbackQuotes[5]}</h1>
         <p>
-          You were off by <span style={resultStyle}>{roundDiff}</span>
+          You were off by{" "}
+          <span style={resultStyle}>{roundScores[curr]}</span>
         </p>
         <div style={{ display: "flex", gap: "2em" }}>
           <p>

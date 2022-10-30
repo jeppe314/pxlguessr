@@ -25,11 +25,6 @@ export const Game = () => {
     return Math.abs(a - b)
   }
 
-  const roundDiff = difference(
-    widthGuesses[curr] + heightGuesses[curr],
-    targetHeights[curr] + targetWidths[curr]
-  )
-
   const startPos = (e) => {
     if (!guessed) {
       setMouseDown(true)
@@ -66,9 +61,14 @@ export const Game = () => {
   }
   //FIXME
 
-  const boxGuess = (e) => {
+  const boxGuess = () => {
     setMouseDown(false)
     if (!guessed && boxStyles.width > 0 && boxStyles.height > 0) {
+      const roundDiff = difference(
+        widthGuesses[curr] + heightGuesses[curr],
+        targetHeights[curr] + targetWidths[curr]
+      )
+
       setGameState((prev) => ({
         ...prev,
         guessed: true,
@@ -84,8 +84,8 @@ export const Game = () => {
       className="game"
       onMouseDown={(e) => startPos(e)}
       onMouseMove={(e) => boxMove(e)}
-      onMouseUp={(e) => {
-        boxGuess(e)
+      onMouseUp={() => {
+        boxGuess()
       }}
     >
       <h1 className="good--luck">Good luck!</h1>

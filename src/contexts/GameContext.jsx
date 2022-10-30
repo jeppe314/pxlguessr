@@ -20,6 +20,7 @@ export const GameContextProvider = ({ children }) => {
   const [gameState, setGameState] = useState({
     started: false,
     guessed: false,
+    gameLength: 5,
     round: 1,
     targetHeights: randomIntFromInterval(20, 400, 5),
     targetWidths: randomIntFromInterval(20, 400, 5),

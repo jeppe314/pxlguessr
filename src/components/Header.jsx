@@ -6,7 +6,7 @@ import CountUp from "react-countup"
 
 export const Header = () => {
   const { gameState, curr } = useContext(GameContext)
-  const { targetHeights, targetWidths, score, roundScores } =
+  const { targetHeights, targetWidths, score, roundScores, length } =
     gameState
 
   return (
@@ -43,11 +43,26 @@ export const Header = () => {
               </Btn>
               <div className="dropdown">
                 <ul>
-                  <li>Round 1: {roundScores[0]}</li>
-                  <li>Round 2: {roundScores[1]}</li>
-                  <li>Round 3: {roundScores[2]}</li>
-                  <li>Round 4: {roundScores[3]}</li>
-                  <li>Round 5: {roundScores[4]}</li>
+                  <li>
+                    Round 1: {""}
+                    {roundScores[0] > 0 ? roundScores[0] : "-"}
+                  </li>
+                  <li>
+                    Round 2: {""}
+                    {roundScores[1] > 0 ? roundScores[1] : "-"}
+                  </li>{" "}
+                  <li>
+                    Round 3: {""}
+                    {roundScores[3] > 0 ? roundScores[2] : "-"}
+                  </li>{" "}
+                  <li>
+                    Round 4: {""}
+                    {roundScores[4] > 0 ? roundScores[3] : "-"}
+                  </li>{" "}
+                  <li>
+                    Round 5: {""}
+                    {roundScores[5] > 0 ? roundScores[4] : "-"}
+                  </li>
                 </ul>
               </div>
               <p style={{ color: "#da3c3c" }}>

@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react"
 import { GameContext } from "../contexts/GameContext"
 import { Btn } from "./Btn"
 
-export const Feedback = ({ boxStyles, setBoxStyles }) => {
+export const Feedback = () => {
   const { gameState, setGameState, nextRound } =
     useContext(GameContext)
   const {
@@ -13,14 +13,9 @@ export const Feedback = ({ boxStyles, setBoxStyles }) => {
     round,
     roundScores,
     guessed,
-    score,
   } = gameState
 
   const curr = round - 1
-
-  function sumArr(arr) {
-    return arr.reduce((partialSum, a) => partialSum + a, 0)
-  }
 
   const roundFeedbackQuotes = {
     1: "WOW!! That was inch perfect!",
@@ -36,9 +31,6 @@ export const Feedback = ({ boxStyles, setBoxStyles }) => {
   const widthDiff = Math.round(
     (widthGuesses[curr] / targetWidths[curr]) * 100 - 100
   )
-  function difference(a, b) {
-    return Math.abs(a - b)
-  }
 
   const thisRound = Math.abs(heightDiff) + Math.abs(widthDiff)
   useEffect(() => {

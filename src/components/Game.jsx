@@ -1,5 +1,4 @@
-import React, { useContext, useState } from "react"
-import { useEffect } from "react"
+import React, { useContext } from "react"
 import { GameContext } from "../contexts/GameContext"
 import { Feedback } from "./Feedback"
 

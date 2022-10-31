@@ -3,7 +3,8 @@ import { GameContext } from "../contexts/GameContext"
 import { Btn } from "./Btn"
 
 export const Feedback = ({ boxStyles, setBoxStyles }) => {
-  const { gameState, setGameState } = useContext(GameContext)
+  const { gameState, setGameState, nextRound } =
+    useContext(GameContext)
   const {
     widthGuesses,
     heightGuesses,
@@ -12,19 +13,16 @@ export const Feedback = ({ boxStyles, setBoxStyles }) => {
     round,
     roundScores,
     guessed,
+    score,
   } = gameState
 
   const curr = round - 1
-
-  function difference(a, b) {
-    return Math.abs(a - b)
-  }
 
   function sumArr(arr) {
     return arr.reduce((partialSum, a) => partialSum + a, 0)
   }
 
-  const feedbackQuotes = {
+  const roundFeedbackQuotes = {
     1: "WOW!! That was inch perfect!",
     2: "Very impressive! That was a great guess!",
     3: "Good guess!",
@@ -32,31 +30,24 @@ export const Feedback = ({ boxStyles, setBoxStyles }) => {
     5: "Come on... Can you atleast try?",
   }
 
-  const heightDiff = heightGuesses[curr] - targetHeights[curr]
-  const widthDiff = widthGuesses[curr] - targetWidths[curr]
-  const thisRound = Math.abs(heightDiff) + Math.abs(widthDiff)
+  const heightDiff = Math.round(
+    (heightGuesses[curr] / targetHeights[curr]) * 100 - 100
+  )
+  const widthDiff = Math.round(
+    (widthGuesses[curr] / targetWidths[curr]) * 100 - 100
+  )
+  function difference(a, b) {
+    return Math.abs(a - b)
+  }
 
+  const thisRound = Math.abs(heightDiff) + Math.abs(widthDiff)
   useEffect(() => {
     setGameState((prev) => ({
       ...prev,
       roundScores: [...roundScores, thisRound],
-      score: sumArr(prev.roundScores),
+      score: prev.score + thisRound,
     }))
   }, [guessed])
-
-  const nextRound = () => {
-    setGameState((prev) => ({
-      ...prev,
-      guessed: false,
-      round: prev.round + 1,
-    }))
-    setBoxStyles((prev) => ({
-      ...prev,
-      width: 0,
-      height: 0,
-    }))
-    console.log(gameState)
-  }
 
   const resultStyle = {
     color: "#da3c3c",
@@ -65,33 +56,33 @@ export const Feedback = ({ boxStyles, setBoxStyles }) => {
   return (
     <div className="feedback">
       <div className="feedback--stats">
-        <h1>{feedbackQuotes[5]}</h1>
+        <h1>{roundFeedbackQuotes[5]}</h1>
         <p>
           You were off by{" "}
-          <span style={resultStyle}>{roundScores[curr]}</span>
+          <span style={resultStyle}>{roundScores[curr]}%</span>
         </p>
         <div style={{ display: "flex", gap: "2em" }}>
           <p>
             Width:{" "}
             <span style={{ color: "white" }}>
-              {widthGuesses[curr]}{" "}
+              {widthGuesses[curr]}px{" "}
             </span>
             (
             <span style={resultStyle}>
               {widthDiff > 0 && "+"}
-              {widthDiff}
+              {widthDiff}%
             </span>
             )
           </p>
           <p>
             Height:{" "}
             <span style={{ color: "white" }}>
-              {heightGuesses[curr]}{" "}
+              {heightGuesses[curr]}px{" "}
             </span>
             (
             <span style={resultStyle}>
               {heightDiff > 0 && "+"}
-              {heightDiff}
+              {heightDiff}%
             </span>
             )
           </p>

@@ -126,7 +126,7 @@ $headerBg: rgb(53, 51, 51);
 }
 
 .stretch {
-  animation: stretch 5s 0.5s;
+  animation: stretch 5s .5s;
 }
 
 .colorShift {
@@ -200,6 +200,7 @@ $headerBg: rgb(53, 51, 51);
     h1 {
       font-size: 3em;
       font-style: italic;
+      color: #da3c3c;
     }
   }
   .result--rounds {

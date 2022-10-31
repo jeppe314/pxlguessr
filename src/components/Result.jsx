@@ -4,7 +4,7 @@ import { nanoid } from "nanoid"
 import { Btn } from "./Btn"
 
 export const Result = () => {
-  const { gameState, setGameState } = useContext(GameContext)
+  const { gameState, setGameState, playAgain} = useContext(GameContext)
   const { score, roundScores } = gameState
 
   const rounds = roundScores.map((round, index) => {
@@ -16,25 +16,12 @@ export const Result = () => {
     )
   })
 
-  const playAgain = () => {
-    setGameState((prev) => ({
-      ...prev,
-      round: 1,
-      score: 0,
-      roundScores: [],
-      widthGuesses: [],
-      heightGuesses: [],
-      widthDiff: [],
-      heightDiff: [],
-    }))
-  }
-
   return (
     <div className="result">
       <div className="result--score">
         <h3>Your total score is</h3>
         <br />
-        <h1>{score}!</h1>
+        <h1>{score}%</h1>
       </div>
       <div className="result--rounds">{rounds}</div>
       <Btn handleClick={playAgain}>Play again</Btn>

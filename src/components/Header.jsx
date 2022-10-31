@@ -4,9 +4,8 @@ import { IoMdArrowDropdown } from "react-icons/io"
 import { Btn } from "./Btn"
 
 export const Header = () => {
-  const { gameState } = useContext(GameContext)
-  const { round, targetHeights, targetWidths, score } = gameState
-  const curr = round - 1
+  const { gameState, curr } = useContext(GameContext)
+  const { targetHeights, targetWidths, score } = gameState
 
   return (
     <div className="header">
@@ -41,7 +40,7 @@ export const Header = () => {
             </Btn>
             <p style={{ color: "#da3c3c" }}>
               <span>Score: </span>
-              {score}
+              {score}%
             </p>
           </div>
         </div>

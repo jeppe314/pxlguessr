@@ -4,6 +4,7 @@ export const GameContext = createContext()
 
 export const GameContextProvider = ({ children }) => {
   const [gameState, setGameState] = useState({
+    finished: false,
     started: false,
     guessed: false,
     gameLength: 5,
@@ -103,8 +104,10 @@ export const GameContextProvider = ({ children }) => {
   const nextRound = () => {
     setGameState((prev) => ({
       ...prev,
+      started: prev.finished ? false : true,
       guessed: false,
       round: prev.round + 1,
+      finished: prev.round === prev.gameLength ? true : false,
     }))
     setBoxStyles((prev) => ({
       ...prev,
@@ -116,6 +119,8 @@ export const GameContextProvider = ({ children }) => {
   const playAgain = () => {
     setGameState((prev) => ({
       ...prev,
+      started: true,
+      finished: false,
       round: 1,
       score: 0,
       roundScores: [],
@@ -141,7 +146,7 @@ export const GameContextProvider = ({ children }) => {
         startPos,
         boxMove,
         boxGuess,
-        feedbackQuotes
+        feedbackQuotes,
       }}
     >
       {children}

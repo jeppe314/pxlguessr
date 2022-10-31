@@ -126,7 +126,13 @@ $headerBg: rgb(53, 51, 51);
 }
 
 .stretch {
-  animation: stretch 5s .5s;
+  animation: stretch 5s 0.5s;
+}
+
+.postPos {
+  font-size: 3em;
+  top: 20%;
+  left: 50%;
 }
 
 .colorShift {
@@ -197,6 +203,9 @@ $headerBg: rgb(53, 51, 51);
   height: 50%;
   .result--score {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+
     h1 {
       font-size: 3em;
       font-style: italic;

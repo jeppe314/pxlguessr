@@ -13,7 +13,6 @@ export const Feedback = () => {
     round,
     roundScores,
     guessed,
-    score,
   } = gameState
 
   const heightDiff = Math.round(

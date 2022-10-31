@@ -3,7 +3,7 @@ import { GameContext } from "../contexts/GameContext"
 import { Btn } from "./Btn"
 
 export const Feedback = () => {
-  const { gameState, setGameState, nextRound } =
+  const { gameState, setGameState, nextRound, curr } =
     useContext(GameContext)
   const {
     widthGuesses,
@@ -14,8 +14,6 @@ export const Feedback = () => {
     roundScores,
     guessed,
   } = gameState
-
-  const curr = round - 1
 
   const roundFeedbackQuotes = {
     1: "WOW!! That was inch perfect!",
@@ -33,6 +31,7 @@ export const Feedback = () => {
   )
 
   const thisRound = Math.abs(heightDiff) + Math.abs(widthDiff)
+
   useEffect(() => {
     setGameState((prev) => ({
       ...prev,

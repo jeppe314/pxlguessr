@@ -2,6 +2,7 @@ import React, { useContext } from "react"
 import { GameContext } from "../contexts/GameContext"
 import { nanoid } from "nanoid"
 import { Btn } from "./Btn"
+import CountUp from "react-countup"
 
 export const Result = () => {
   const { gameState, playAgain, feedbackQuotes } =
@@ -43,7 +44,17 @@ export const Result = () => {
       <div className="result--score">
         <h3>Your total score is</h3>
         <br />
-        <h1>{score}%</h1>
+        <h1>
+          {" "}
+          <CountUp
+            useEasing={true}
+            style={{ color: "#da3c3c" }}
+            duration={2}
+            start={0}
+            end={score}
+            suffix="%"
+          />
+        </h1>
         <h2>{feedback}</h2>
       </div>
       <div className="result--rounds">{rounds}</div>

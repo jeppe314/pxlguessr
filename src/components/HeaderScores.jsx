@@ -17,7 +17,10 @@ export const HeaderScores = () => {
       >
         <IoMdArrowDropdown style={{ display: "flex" }} />
       </Btn>
-      <div className="dropdown" style={dropdown ? {display: "block"} : {display: "none"}}>
+      <div
+        className={`dropdown ${dropdown && "anim--dropdown"}`}
+        style={dropdown ? { display: "block" } : { display: "none" }}
+      >
         <ul>
           <li>
             Round 1: {""}

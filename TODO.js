@@ -6,4 +6,4 @@
 
 // FIXME: Box flickers and resizes double size on mousemove?
 
-// TODO: Fix feedback quotes on feedback and result
+// CHECK: Fix feedback quotes on feedback and result

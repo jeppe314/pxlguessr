@@ -24,23 +24,23 @@ export const HeaderScores = () => {
         <ul>
           <li>
             Round 1: {""}
-            {roundScores[0] > 0 ? roundScores[0] : "-"}
+            <span>{roundScores[0] > 0 ? roundScores[0] : "-"}</span>
           </li>
           <li>
             Round 2: {""}
-            {roundScores[1] > 0 ? roundScores[1] : "-"}
+            <span>{roundScores[1] > 0 ? roundScores[1] : "-"}</span>
           </li>{" "}
           <li>
             Round 3: {""}
-            {roundScores[3] > 0 ? roundScores[2] : "-"}
+            <span>{roundScores[3] > 0 ? roundScores[2] : "-"}</span>
           </li>{" "}
           <li>
             Round 4: {""}
-            {roundScores[4] > 0 ? roundScores[3] : "-"}
+            <span>{roundScores[4] > 0 ? roundScores[3] : "-"}</span>
           </li>{" "}
           <li>
             Round 5: {""}
-            {roundScores[5] > 0 ? roundScores[4] : "-"}
+            <span>{roundScores[5] > 0 ? roundScores[4] : "-"}</span>
           </li>
         </ul>
       </div>

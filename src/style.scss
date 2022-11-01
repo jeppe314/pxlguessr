@@ -6,6 +6,8 @@ $btn-hover: rgb(72, 222, 72);
 $btn-text: rgb(51, 192, 164);
 $background: rgb(63, 63, 63);
 $headerBg: rgb(53, 51, 51);
+$primary-color: #292b2c;
+$secondary-color: #111112;
 
 * {
   font-family: "Poppins", sans;
@@ -61,7 +63,11 @@ $headerBg: rgb(53, 51, 51);
     flex-direction: column;
     text-align: center;
     align-items: center;
-
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
     .start--content--text {
       width: 70%;
       font-size: 0.8em;
@@ -78,8 +84,8 @@ $headerBg: rgb(53, 51, 51);
 
 .header {
   flex: 1;
-  background-color: $headerBg;
-  border-bottom: 1px solid rgb(99, 90, 90);
+  // background-color: $headerBg;
+  border-bottom: 1px solid rgba(119, 119, 119, 0.21);
   padding: 1em 5em;
   font-size: 0.8em;
   display: flex;
@@ -90,6 +96,11 @@ $headerBg: rgb(53, 51, 51);
     gap: 1em;
     align-items: center;
     position: relative;
+
+    span {
+      display: inline-block;
+      width: 50px;
+    }
   }
 
   .dropdown {
@@ -184,7 +195,12 @@ $headerBg: rgb(53, 51, 51);
 
 .game {
   flex: 6;
-  background: $background;
+  // background: $background;
+  background-image: linear-gradient(
+    135deg,
+    $primary-color 0%,
+    $secondary-color 100%
+  );
   position: relative;
   cursor: crosshair;
 

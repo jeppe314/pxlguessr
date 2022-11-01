@@ -1,8 +1,6 @@
-import React, { useEffect, useState, useContext } from "react"
-import { GameContext } from "../contexts/GameContext"
+import React, { useEffect, useState } from "react"
 
 export const Counter = ({ min, max }) => {
-  const { gameState } = useContext(GameContext)
   const [counter, setCounter] = useState(min)
 
   useEffect(() => {

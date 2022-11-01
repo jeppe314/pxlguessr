@@ -1,11 +1,10 @@
 import React, { useContext } from "react"
 import { GameContext } from "../contexts/GameContext"
-
 import { HeaderScores } from "./HeaderScores"
 
 export const Header = () => {
   const { gameState, curr } = useContext(GameContext)
-  const { targetHeights, targetWidths, score, roundScores, length } =
+  const { targetHeights, targetWidths } =
     gameState
 
   return (

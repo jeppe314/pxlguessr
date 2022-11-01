@@ -19,11 +19,12 @@ export const GameContextProvider = ({ children }) => {
     score: 0,
   })
 
+  console.log(gameState);
+
   const { guessed } = gameState
 
   const [start, setStart] = useState(false)
   const [mouseDown, setMouseDown] = useState(false)
-  const [touchdown, setTouchDown] = useState(false)
   const [rect, setRect] = useState({})
 
   function randomIntFromInterval(min, max, n) {

@@ -25,9 +25,10 @@ $secondary-color: #111112;
   cursor: pointer;
   color: $btn-text;
   // TODO Dropshadow
+  filter: drop-shadow(3px 3px 10px rgba(53, 52, 52, 0.967));
   &:hover {
     background-color: $btn-text;
-    color: $background;
+    color: $primary-color;
   }
 }
 

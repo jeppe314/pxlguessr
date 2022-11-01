@@ -255,6 +255,10 @@ $secondary-color: #111112;
   align-items: center;
   justify-content: space-around;
   height: 50%;
+  top: 50%;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
   .result--score {
     max-width: 60%;
     text-align: center;

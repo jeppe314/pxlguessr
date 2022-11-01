@@ -16,6 +16,7 @@ export const Game = () => {
   return (
     <div
       className="game"
+      onTouchStart={(e) => console.log(e)}
       onMouseDown={(e) => startPos(e)}
       onMouseMove={(e) => boxMove(e)}
       onMouseUp={() => {

@@ -23,6 +23,7 @@ export const GameContextProvider = ({ children }) => {
 
   const [start, setStart] = useState(false)
   const [mouseDown, setMouseDown] = useState(false)
+  const [touchdown, setTouchDown] = useState(false)
   const [rect, setRect] = useState({})
 
   function randomIntFromInterval(min, max, n) {

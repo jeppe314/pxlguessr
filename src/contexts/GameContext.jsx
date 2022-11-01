@@ -61,6 +61,7 @@ export const GameContextProvider = ({ children }) => {
       setRect({
         left: e.clientX,
         top: e.clientY,
+        initialTop: e.clientY - el.top
       })
 
       setBoxStyles({
@@ -71,20 +72,16 @@ export const GameContextProvider = ({ children }) => {
       })
     } else return
   }
-
   const boxMove = (e) => {
     const relX = e.clientX - rect.left
     const relY = e.clientY - rect.top
     if (mouseDown) {
-      setBoxStyles({
-        left: boxStyles.left > e.clientX ? e.clientX : boxStyles.left,
-        top:
-          boxStyles.top > e.clientY
-            ? e.clientY - rect.top
-            : boxStyles.top,
-        width: relX >= 0 ? relX : relX + -(2 * relX),
-        height: relY >= 0 ? relY : relY + -(2 * relY),
-      })
+      setBoxStyles((prev) => ({
+        top: relY >= 0 ? rect.initialTop : rect.initialTop - Math.abs(relY), 
+        left: relX >= 0 ? e.clientX - relX : e.clientX - relX -  Math.abs(relX),
+        width: Math.abs(relX),
+        height: Math.abs(relY),
+      }))
     } else return
   }
   //FIXME

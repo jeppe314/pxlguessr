@@ -1,9 +1,10 @@
 import React, { useContext, useEffect } from "react"
 import { GameContext } from "../contexts/GameContext"
 import { Btn } from "./Btn"
+import { FeedbackQuote } from "./FeedbackQuote"
 
 export const Feedback = () => {
-  const { gameState, setGameState, nextRound, curr, feedbackQuotes } =
+  const { gameState, setGameState, nextRound, curr } =
     useContext(GameContext)
   const {
     widthGuesses,
@@ -24,27 +25,6 @@ export const Feedback = () => {
 
   const thisRound = Math.abs(heightDiff) + Math.abs(widthDiff)
 
-  let feedback = ""
-  switch (true) {
-    case thisRound < 10:
-      feedback = feedbackQuotes.round[1]
-      break
-    case thisRound < 30:
-      feedback = feedbackQuotes.round[2]
-      break
-    case thisRound < 75:
-      feedback = feedbackQuotes.round[3]
-      break
-    case thisRound < 150:
-      feedback = feedbackQuotes.round[4]
-      break
-    case thisRound < 300:
-      feedback = feedbackQuotes.round[5]
-      break
-    default:
-      feedback = "I have no words for you."
-  }
-
   useEffect(() => {
     setGameState((prev) => ({
       ...prev,
@@ -60,7 +40,7 @@ export const Feedback = () => {
   return (
     <div className="feedback">
       <div className="feedback--stats">
-        <h1>{feedback}</h1>
+        <FeedbackQuote thisRound={thisRound} />
         <p>
           You were off by{" "}
           <span style={resultStyle}>{roundScores[curr]}%</span>

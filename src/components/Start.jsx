@@ -7,6 +7,12 @@ import { FloatingShapes } from "./FloatingShapes"
 export const Start = () => {
   const { setGameState, err, startGame } = useContext(GameContext)
 
+  const handleEnter = (e) => {
+    if (e.key === "Enter") {
+      startGame()
+    }
+  }
+
   return (
     <div className="start">
       <FloatingShapes>
@@ -28,6 +34,7 @@ export const Start = () => {
             type="text"
             className="name--input"
             placeholder="NAME"
+            onKeyDown={(e) => handleEnter(e)}
             onChange={(e) =>
               setGameState((prev) => ({
                 ...prev,

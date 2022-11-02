@@ -8,7 +8,7 @@ export const GameContext = createContext()
 export const GameContextProvider = ({ children }) => {
   const [gameState, setGameState] = useState({
     uid: nanoid(),
-    name: "TestName",
+    name: "TestName3",
     finished: false,
     started: false,
     guessed: false,
@@ -80,33 +80,44 @@ export const GameContextProvider = ({ children }) => {
   }
   //FIXME
 
+
+  //TODO: Try make boxGuess async and add updateDoc function there instead of nextRound func?
+
   const boxGuess = () => {
     setMouseDown(false)
     if (!guessed && boxStyles.width > 0 && boxStyles.height > 0) {
       setGameState((prev) => ({
         ...prev,
+        finished: prev.round === prev.gameLength ? true : false,
         guessed: true,
         widthGuesses: [...prev.widthGuesses, boxStyles.width],
         heightGuesses: [...prev.heightGuesses, boxStyles.height],
       }))
     }
+    console.log(gameState.finished)
+    console.log(gameState.round)
   }
 
+
+
   const nextRound = async () => {
+    //Resets gameState for a new round
     setGameState((prev) => ({
       ...prev,
       started: prev.finished ? false : true,
       guessed: false,
       round: prev.round + 1,
-      finished: prev.round === prev.gameLength ? true : false,
+      // finished: prev.round === prev.gameLength ? true : false,
     }))
+
+    //Resets guess box
     setBoxStyles((prev) => ({
       ...prev,
       width: 0,
       height: 0,
     }))
-
-    if (round === 5) {
+    //Upload score to firestore
+    if (finished) {
       try {
         await setDoc(doc(db, "scores", uid), {
           name: name,

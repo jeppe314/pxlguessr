@@ -1,6 +1,10 @@
 import React from "react"
 
+
 export const HighScore = () => {
+
+  
+
   return (
     <div className="highscore">
       <h1>High Scores</h1>

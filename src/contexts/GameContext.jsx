@@ -1,9 +1,14 @@
-import React, { createContext, useState } from "react"
+import React, { createContext, useEffect, useState } from "react"
 import { feedbackQuotes } from "../assets/quotes"
+import { doc, setDoc } from "firebase/firestore"
+import { db } from "../firebase"
+import { nanoid } from "nanoid"
 
 export const GameContext = createContext()
 export const GameContextProvider = ({ children }) => {
   const [gameState, setGameState] = useState({
+    uid: nanoid(),
+    name: "TestName",
     finished: false,
     started: false,
     guessed: false,
@@ -19,9 +24,7 @@ export const GameContextProvider = ({ children }) => {
     score: 0,
   })
 
-  console.log(gameState);
-
-  const { guessed } = gameState
+  const { guessed, finished, uid, score, name, round } = gameState
 
   const [start, setStart] = useState(false)
   const [mouseDown, setMouseDown] = useState(false)
@@ -89,7 +92,7 @@ export const GameContextProvider = ({ children }) => {
     }
   }
 
-  const nextRound = () => {
+  const nextRound = async () => {
     setGameState((prev) => ({
       ...prev,
       started: prev.finished ? false : true,
@@ -102,6 +105,18 @@ export const GameContextProvider = ({ children }) => {
       width: 0,
       height: 0,
     }))
+
+    if (round === 5) {
+      try {
+        await setDoc(doc(db, "scores", uid), {
+          name: name,
+          score: score,
+        })
+        console.log("TEST")
+      } catch (err) {
+        console.log(err)
+      }
+    }
   }
 
   const playAgain = () => {
@@ -112,6 +127,8 @@ export const GameContextProvider = ({ children }) => {
       round: 1,
       score: 0,
       roundScores: [],
+      targetHeights: randomIntFromInterval(20, 400, 5),
+      targetWidths: randomIntFromInterval(20, 400, 5),
       widthGuesses: [],
       heightGuesses: [],
       widthDiff: [],

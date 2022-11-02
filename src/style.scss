@@ -284,11 +284,16 @@ $primary-red-low: #da3c3c65;
       align-items: center;
       width: 40%;
       height: 60%;
-
+      ul::-webkit-scrollbar {
+        display: none;
+      }
       ul {
         padding: 2em;
         width: 70%;
         overflow: scroll;
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+
         li {
           list-style: none;
           text-transform: uppercase;

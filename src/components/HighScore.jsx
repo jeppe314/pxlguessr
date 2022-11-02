@@ -26,8 +26,11 @@ export const HighScore = () => {
     getScores()
   }, [])
 
-  let listEl
-  listEl = highscores.scores?.map((user) => {
+  const sorted = highscores.scores?.sort((a, b) => {
+    return a.score - b.score
+  })
+
+  const listEl = sorted?.map((user) => {
     return (
       <li key={nanoid()} className="highscore--item">
         <p className="highscore--name">

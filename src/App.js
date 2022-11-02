@@ -9,7 +9,7 @@ import { Result } from "./components/Result"
 
 function App() {
   const { gameState } = useContext(GameContext)
-  const { started, gameLength, round } = gameState
+  const { started, gameLength, round, finished, showPost } = gameState
 
   return (
     <div className="container">
@@ -19,7 +19,7 @@ function App() {
           <Header />
           <Game />
         </div>
-      ) : started && round > gameLength ? (
+      ) : showPost ? (
         <Result />
       ) : (
         <Start />

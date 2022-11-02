@@ -12,3 +12,4 @@
 // TODO: Play again modal
 // CHECK: Initialize firebase (havent installed yet)
 // TODO: Timestamp on score in firestore to set date in highscore list
+// TODO: Update start title animation to look like resizing box

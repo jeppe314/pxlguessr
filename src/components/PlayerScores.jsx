@@ -12,7 +12,7 @@ export const PlayerScores = () => {
   return (
     <div className="result--wrapper">
       <div className="result--score">
-        <h2>Your total score is</h2>
+        <h3>Your total score is</h3>
         <br />
         <h1>
           {" "}

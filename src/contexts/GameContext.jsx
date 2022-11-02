@@ -1,17 +1,26 @@
 import React, { createContext, useEffect, useState } from "react"
 import { feedbackQuotes } from "../assets/quotes"
-import { doc, setDoc } from "firebase/firestore"
+import {
+  doc,
+  updateDoc,
+  Timestamp,
+  arrayUnion,
+} from "firebase/firestore"
 import { db } from "../firebase"
 import { nanoid } from "nanoid"
 
 export const GameContext = createContext()
 export const GameContextProvider = ({ children }) => {
+  const [boxStyles, setBoxStyles] = useState({})
   const [err, setErr] = useState(false)
+  const [mouseDown, setMouseDown] = useState(false)
+  const [rect, setRect] = useState({})
 
   const [gameState, setGameState] = useState({
     uid: nanoid(),
     name: "",
     finished: false,
+    showPost: false,
     started: false,
     guessed: false,
     gameLength: 5,
@@ -26,11 +35,7 @@ export const GameContextProvider = ({ children }) => {
     score: 0,
   })
 
-  const { guessed, finished, uid, score, name, round } = gameState
-
-  const [start, setStart] = useState(false)
-  const [mouseDown, setMouseDown] = useState(false)
-  const [rect, setRect] = useState({})
+  const { guessed, finished, uid, score, name, round, showPost } = gameState
 
   function randomIntFromInterval(min, max, n) {
     const arr = []
@@ -39,7 +44,6 @@ export const GameContextProvider = ({ children }) => {
     }
     return arr
   }
-  const [boxStyles, setBoxStyles] = useState({})
 
   const curr = gameState.round - 1
 
@@ -103,20 +107,41 @@ export const GameContextProvider = ({ children }) => {
         guessed: true,
         widthGuesses: [...prev.widthGuesses, boxStyles.width],
         heightGuesses: [...prev.heightGuesses, boxStyles.height],
+        finished: prev.round >= prev.gameLength ? true : false,
+        started: prev.round > prev.gameLength ? false : true,
       }))
     }
-    console.log(gameState.finished)
-    console.log(gameState.round)
   }
+
+  const uploadScore = async () => {
+    try {
+      console.log("Uploading to server...")
+      await updateDoc(doc(db, "scores", "users"), {
+        scores: arrayUnion({
+          name: name,
+          score: score,
+          date: Timestamp.now(),
+        }),
+      })
+      console.log("Finished uploading!")
+    } catch (err) {
+      console.log("error: " + err)
+    }
+  }
+  //Upload score to firestore
+  useEffect(() => {
+    if (showPost) {
+      uploadScore()
+    } else return
+  }, [showPost])
 
   const nextRound = async () => {
     //Resets gameState for a new round
     setGameState((prev) => ({
       ...prev,
-      started: prev.finished ? false : true,
+      showPost: finished ? true : false,
       guessed: false,
       round: prev.round + 1,
-      finished: prev.round === 4 ? true : false,
     }))
 
     //Resets guess box
@@ -125,19 +150,6 @@ export const GameContextProvider = ({ children }) => {
       width: 0,
       height: 0,
     }))
-    //Upload score to firestore
-    if (finished) {
-      console.log("FINISHED")
-      try {
-        await setDoc(doc(db, "scores", uid), {
-          name: name,
-          score: score,
-        })
-        console.log("TEST")
-      } catch (err) {
-        console.log(err)
-      }
-    }
   }
 
   const playAgain = () => {
@@ -145,6 +157,7 @@ export const GameContextProvider = ({ children }) => {
       ...prev,
       started: true,
       finished: false,
+      showPost: false,
       round: 1,
       score: 0,
       roundScores: [],
@@ -163,8 +176,6 @@ export const GameContextProvider = ({ children }) => {
         startGame,
         gameState,
         setGameState,
-        start,
-        setStart,
         curr,
         playAgain,
         nextRound,

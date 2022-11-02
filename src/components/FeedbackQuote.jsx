@@ -42,5 +42,5 @@ export const FeedbackQuote = ({ thisRound }) => {
       feedback = "I have no words for you."
   }
 
-  return <h1 style={{color: "white"}}>{feedback}</h1>
+  return <h2 style={{color: "white"}}>{feedback}</h2>
 }

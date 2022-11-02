@@ -5,7 +5,7 @@ import "./../floatingBg.scss"
 import { FloatingShapes } from "./FloatingShapes"
 
 export const Start = () => {
-  const { setGameState } = useContext(GameContext)
+  const { setGameState, err, startGame } = useContext(GameContext)
 
   return (
     <div className="start">
@@ -23,13 +23,21 @@ export const Start = () => {
             <br />
             You can do this, right?
           </p>
-          <Btn
-            handleClick={() =>
-              setGameState((prev) => ({ ...prev, started: true }))
+          <Btn handleClick={(e) => startGame(e)}>Start Game</Btn>
+          <input
+            type="text"
+            className="name--input"
+            placeholder="NAME"
+            onChange={(e) =>
+              setGameState((prev) => ({
+                ...prev,
+                name: e.target.value,
+              }))
             }
-          >
-            Start Game
-          </Btn>
+          ></input>
+          {err && (
+            <p style={{ color: "red" }}>Tell me your name first!</p>
+          )}
         </div>
       </FloatingShapes>
     </div>

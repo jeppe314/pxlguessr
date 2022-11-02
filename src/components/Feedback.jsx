@@ -14,6 +14,7 @@ export const Feedback = () => {
     round,
     roundScores,
     guessed,
+    gameLength,
   } = gameState
 
   const heightDiff = Math.round(
@@ -72,7 +73,7 @@ export const Feedback = () => {
           </p>
         </div>
         <Btn handleClick={() => nextRound()}>
-          {round === 5 ? "See results" : "Next round"}
+          {round === gameLength ? "See results" : "Next round"}
         </Btn>
       </div>
     </div>

@@ -10,4 +10,4 @@
 // CHECK: Add floating stuff background
 
 // TODO: Play again modal
-// TODO: Initialize firebase (havent installed yet)
+// CHECK: Initialize firebase (havent installed yet)

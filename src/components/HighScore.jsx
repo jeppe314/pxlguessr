@@ -30,7 +30,7 @@ export const HighScore = () => {
     return a.score - b.score
   })
 
-  const listEl = sorted?.map((user) => {
+  const listEl = sorted?.slice(0,100).map((user) => {
     return (
       <li key={nanoid()} className="highscore--item">
         <p className="highscore--name">

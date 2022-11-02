@@ -28,7 +28,15 @@ export const HighScore = () => {
 
   let listEl
   listEl = highscores.scores?.map((user) => {
-    return <li key={nanoid()}>{user.name + user.score}</li>
+    return (
+      <li key={nanoid()} className="highscore--item">
+        <p className="highscore--name">
+          {highscores.scores.indexOf(user) + 1}. {user.name}
+        </p>
+        <div className="dots"></div>
+        <p className="highscore--score">{user.score}</p>
+      </li>
+    )
   })
 
   return (

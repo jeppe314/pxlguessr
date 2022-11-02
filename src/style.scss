@@ -8,12 +8,17 @@ $background: rgb(63, 63, 63);
 $headerBg: rgb(53, 51, 51);
 $primary-color: #292b2c;
 $secondary-color: #111112;
+$primary-red: #da3c3c;
+$primary-red-low: #da3c3c65;
 
-* {
+*,
+*:after,
+*:before {
   font-family: "Poppins", sans;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -moz-box-sizing: border-box;
 }
 
 .btn {
@@ -271,54 +276,72 @@ $secondary-color: #111112;
     height: 100%;
     width: 100%;
 
-    .result--box {
+    .highscore {
+      flex: 1;
       display: flex;
-      padding: 2em;
-      width: 80%;
-      margin-top: 3em;
+      flex-direction: column;
+      text-align: center;
+      align-items: center;
+      width: 40%;
+      height: 60%;
 
-      .highscore {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 40%;
-
-        ul {
-          li {
-            list-style: none;
-            text-transform: uppercase;
+      ul {
+        padding: 2em;
+        width: 70%;
+        overflow: scroll;
+        li {
+          list-style: none;
+          text-transform: uppercase;
+          display: flex;
+          width: 100%;
+          justify-content: space-between;
+          font-size: 1.2em;
+          .dots {
+            // border-bottom: 2px dashed $primary-red;
+            flex: 1;
+            position: relative;
+            margin: 0 0.3em;
+            &::before {
+              content: "";
+              display: inline-block;
+              position: absolute;
+              left: 0;
+              top: 50%;
+              height: 50%;
+              width: 100%;
+              border-top: 2px dashed $primary-red-low;
+            }
           }
         }
       }
+    }
 
-      .result--wrapper {
-        display: flex;
-        flex: 1;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 40%;
-        gap: 2em;
-      }
+    .result--wrapper {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 40%;
+      height: 60%;
+      gap: 2em;
+    }
 
-      .result--score {
-        max-width: 60%;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
+    .result--score {
+      max-width: 60%;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
 
-        h1 {
-          font-size: 3em;
-          font-style: italic;
-          color: #da3c3c;
-        }
+      h1 {
+        font-size: 3em;
+        font-style: italic;
+        color: #da3c3c;
       }
-      .result--rounds {
-        display: flex;
-        gap: 1em;
-      }
+    }
+    .result--rounds {
+      display: flex;
+      gap: 1em;
     }
   }
 

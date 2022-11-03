@@ -39,7 +39,7 @@ export const FeedbackQuote = ({ thisRound }) => {
       feedback = feedbackQuotes.post[5]
       break
     default:
-      feedback = "I have no words for you."
+      feedback = "You tried!"
   }
 
   return <h2 style={{ color: "white" }}>{feedback}</h2>

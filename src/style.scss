@@ -285,8 +285,10 @@ $primary-red-low: #da3c3c65;
     display: flex;
     align-items: center;
     justify-content: center;
+    align-items: flex-end;
     height: 100%;
     width: 100%;
+    padding: 2em;
 
     .highscore {
       flex: 1;
@@ -295,13 +297,14 @@ $primary-red-low: #da3c3c65;
       text-align: center;
       align-items: center;
       width: 40%;
-      height: 60%;
+      height: 80%;
+      padding: 1em 0;
+      font-size: 1.5em;
       ul::-webkit-scrollbar {
         display: none;
       }
       ul {
-        padding: 2em;
-        width: 70%;
+        width: 100%;
         overflow: scroll;
         -ms-overflow-style: none; /* IE and Edge */
         scrollbar-width: none; /* Firefox */
@@ -312,7 +315,7 @@ $primary-red-low: #da3c3c65;
           display: flex;
           width: 100%;
           justify-content: space-between;
-          font-size: 1.2em;
+          padding: 0 0.5em;
           .dots {
             // border-bottom: 2px dashed $primary-red;
             flex: 1;
@@ -340,7 +343,7 @@ $primary-red-low: #da3c3c65;
       align-items: center;
       justify-content: center;
       width: 40%;
-      height: 60%;
+      height: 80%;
       gap: 2em;
     }
 

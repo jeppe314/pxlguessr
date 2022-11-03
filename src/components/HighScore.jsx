@@ -30,9 +30,19 @@ export const HighScore = () => {
     return a.score - b.score
   })
 
-  const listEl = sorted?.slice(0,100).map((user) => {
+  const listEl = sorted?.slice(0, 100).map((user) => {
     return (
-      <li key={nanoid()} className="highscore--item">
+      <li
+        key={nanoid()}
+        className="highscore--item"
+        style={{
+          backgroundColor:
+            gameState.name === user.name &&
+            user.score === gameState.score
+              ? "rgb(70, 24, 24)"
+              : "",
+        }}
+      >
         <p className="highscore--name">
           {highscores.scores.indexOf(user) + 1}. {user.name}
         </p>
@@ -44,7 +54,6 @@ export const HighScore = () => {
 
   return (
     <div className="highscore">
-      <h1>High Scores</h1>
       <h2>Top 100</h2>
       <ul className="highscore--list">{listEl}</ul>
     </div>

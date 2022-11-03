@@ -3,24 +3,24 @@ import { GameContext } from "../contexts/GameContext"
 
 export const FeedbackQuote = ({ thisRound }) => {
   const { gameState, feedbackQuotes } = useContext(GameContext)
-  const { finished, score, showPost } = gameState
+  const { finished, score, showPost, round, gameLength } = gameState
 
   let feedback = ""
 
   switch (true) {
-    case !finished && thisRound < 10:
+    case round <= gameLength && thisRound < 10:
       feedback = feedbackQuotes.round[1]
       break
-    case !finished && thisRound < 30:
+    case round <= gameLength && thisRound < 30:
       feedback = feedbackQuotes.round[2]
       break
-    case !finished && thisRound < 75:
+    case round <= gameLength && thisRound < 75:
       feedback = feedbackQuotes.round[3]
       break
-    case !finished && thisRound < 150:
+    case round <= gameLength && thisRound < 150:
       feedback = feedbackQuotes.round[4]
       break
-    case !finished && thisRound < 300:
+    case round <= gameLength && thisRound < 300:
       feedback = feedbackQuotes.round[5]
       break
     case showPost && score < 100:
@@ -42,5 +42,5 @@ export const FeedbackQuote = ({ thisRound }) => {
       feedback = "I have no words for you."
   }
 
-  return <h2 style={{color: "white"}}>{feedback}</h2>
+  return <h2 style={{ color: "white" }}>{feedback}</h2>
 }

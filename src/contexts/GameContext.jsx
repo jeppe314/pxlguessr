@@ -12,6 +12,7 @@ import { nanoid } from "nanoid"
 export const GameContext = createContext()
 export const GameContextProvider = ({ children }) => {
   const [boxStyles, setBoxStyles] = useState({})
+  const [targetBoxStyles, setTargetBoxStyles] = useState({})
   const [err, setErr] = useState(false)
   const [mouseDown, setMouseDown] = useState(false)
   const [rect, setRect] = useState({})
@@ -35,7 +36,17 @@ export const GameContextProvider = ({ children }) => {
     score: 0,
   })
 
-  const { guessed, finished, uid, score, name, round, showPost } = gameState
+  const {
+    guessed,
+    finished,
+    uid,
+    score,
+    name,
+    round,
+    showPost,
+    targetWidths,
+    targetHeights,
+  } = gameState
 
   function randomIntFromInterval(min, max, n) {
     const arr = []
@@ -111,6 +122,13 @@ export const GameContextProvider = ({ children }) => {
         started: prev.round > prev.gameLength ? false : true,
       }))
     }
+    console.log("TEST")
+    setTargetBoxStyles({
+      width: targetWidths[curr],
+      height: targetHeights[curr],
+      top: boxStyles.top,
+      left: boxStyles.left,
+    })
   }
 
   const uploadScore = async () => {
@@ -150,6 +168,12 @@ export const GameContextProvider = ({ children }) => {
       width: 0,
       height: 0,
     }))
+    setTargetBoxStyles({
+      width: 0,
+      height: 0,
+      top: 0,
+      left: 0,
+    })
   }
 
   const playAgain = () => {
@@ -187,6 +211,7 @@ export const GameContextProvider = ({ children }) => {
         feedbackQuotes,
         err,
         setErr,
+        targetBoxStyles,
       }}
     >
       {children}

@@ -10,6 +10,7 @@ export const Game = () => {
     boxGuess,
     boxStyles,
     setBoxStyles,
+    targetBoxStyles,
   } = useContext(GameContext)
   const { guessed } = gameState
 
@@ -24,6 +25,7 @@ export const Game = () => {
     >
       <h1 className="good--luck">Good luck!</h1>
       <div className="user--guess" style={boxStyles}></div>
+      <div className="target--box" style={targetBoxStyles}></div>
       {guessed && (
         <Feedback setBoxStyles={setBoxStyles} boxStyles={boxStyles} />
       )}

@@ -267,6 +267,18 @@ $primary-red-low: #da3c3c65;
       animation: backgroundColorPalette 10s infinite;
       opacity: 0.5;
     }
+
+    .target--box {
+      background: transparent;
+      border: 4px dashed white;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 0px;
+      height: 0px;
+      animation: grow 2s forwards;
+      transform: scale(0, 0);
+    }
   }
 
   .result {
@@ -433,6 +445,14 @@ $primary-red-low: #da3c3c65;
       padding-top: 1em;
       visibility: visible;
       transform: scaleY(1);
+    }
+  }
+  @keyframes grow {
+    from {
+      transform: scaleY(0) scaleX(0);
+    }
+    to {
+      transform: scaleY(1) scaleX(1);
     }
   }
 }

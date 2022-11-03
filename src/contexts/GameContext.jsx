@@ -16,6 +16,7 @@ export const GameContextProvider = ({ children }) => {
   const [err, setErr] = useState(false)
   const [mouseDown, setMouseDown] = useState(false)
   const [rect, setRect] = useState({})
+  const [loading, setLoading] = useState(false)
 
   const [gameState, setGameState] = useState({
     uid: nanoid(),
@@ -68,7 +69,7 @@ export const GameContextProvider = ({ children }) => {
     setGameState((prev) => ({
       ...prev,
       started: true,
-      name: e.target.value
+      name: e.target.value,
     }))
   }
 
@@ -212,6 +213,8 @@ export const GameContextProvider = ({ children }) => {
         err,
         setErr,
         targetBoxStyles,
+        loading,
+        setLoading,
       }}
     >
       {children}

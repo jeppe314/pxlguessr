@@ -3,13 +3,16 @@ import { db } from "../firebase"
 import { doc, getDoc } from "firebase/firestore"
 import { GameContext } from "../contexts/GameContext"
 import { nanoid } from "nanoid"
+import { Spinner } from "./Spinner"
 
 export const HighScore = () => {
-  const { gameState } = useContext(GameContext)
+  const { gameState, loading, setLoading } = useContext(GameContext)
   const [highscores, setHighscores] = useState({})
 
   useEffect(() => {
     const getScores = async () => {
+      setLoading(true)
+      console.log("laddar")
       const usersRef = doc(db, "scores", "users")
       const docSnap = await getDoc(usersRef)
       try {
@@ -21,6 +24,8 @@ export const HighScore = () => {
       } catch (err) {
         console.log("error" + err)
       }
+      setLoading(false)
+      console.log("färdigladdat")
     }
 
     getScores()
@@ -55,7 +60,11 @@ export const HighScore = () => {
   return (
     <div className="highscore">
       <h2>Top 100</h2>
-      <ul className="highscore--list">{listEl}</ul>
+      {loading ? (
+        <Spinner loading={loading} />
+      ) : (
+        <ul className="highscore--list">{listEl}</ul>
+      )}
     </div>
   )
 }

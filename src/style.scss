@@ -291,6 +291,7 @@ $primary-red-low: #da3c3c65;
     padding: 2em;
 
     .highscore {
+      position: relative;
       flex: 1;
       display: flex;
       flex-direction: column;

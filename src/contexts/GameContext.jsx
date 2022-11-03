@@ -121,15 +121,14 @@ export const GameContextProvider = ({ children }) => {
         finished: prev.round >= prev.gameLength ? true : false,
         started: prev.round > prev.gameLength ? false : true,
       }))
+      setTargetBoxStyles({
+        width: targetWidths[curr],
+        height: targetHeights[curr],
+        top: boxStyles.top,
+        left: boxStyles.left,
+        border: "3px dashed white",
+      })
     }
-    console.log("TEST")
-    setTargetBoxStyles({
-      width: targetWidths[curr],
-      height: targetHeights[curr],
-      top: boxStyles.top,
-      left: boxStyles.left,
-      border: "3px dashed white",
-    })
   }
 
   const uploadScore = async () => {

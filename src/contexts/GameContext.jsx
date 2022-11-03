@@ -58,8 +58,8 @@ export const GameContextProvider = ({ children }) => {
 
   const curr = gameState.round - 1
 
-  const startGame = async () => {
-    if (name.length < 3) {
+  const startGame = async (e) => {
+    if (e.target.length < 3) {
       console.log("error")
       setErr(true)
       return
@@ -68,6 +68,7 @@ export const GameContextProvider = ({ children }) => {
     setGameState((prev) => ({
       ...prev,
       started: true,
+      name: e.target.value
     }))
   }
 
@@ -133,7 +134,6 @@ export const GameContextProvider = ({ children }) => {
 
   const uploadScore = async () => {
     try {
-      console.log("Uploading to server...")
       await updateDoc(doc(db, "scores", "users"), {
         scores: arrayUnion({
           name: name,
@@ -141,7 +141,6 @@ export const GameContextProvider = ({ children }) => {
           date: Timestamp.now(),
         }),
       })
-      console.log("Finished uploading!")
     } catch (err) {
       console.log("error: " + err)
     }

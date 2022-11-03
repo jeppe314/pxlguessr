@@ -316,6 +316,17 @@ $primary-red-low: #da3c3c65;
           width: 100%;
           justify-content: space-between;
           padding: 0 0.5em;
+
+          //FIXME: How select nth child of the dots?
+
+          // $timeOffset: 2s;
+          // @for $i from 1 through 20 {
+          //   li:nth-child(5):before {
+          //     // units are in the variable so SCSS just does math
+          //     animation-delay: $i * $timeOffset;
+          //   }
+          // }
+
           .dots {
             // border-bottom: 2px dashed $primary-red;
             flex: 1;
@@ -328,8 +339,9 @@ $primary-red-low: #da3c3c65;
               left: 0;
               top: 50%;
               height: 50%;
-              width: 100%;
+              width: 0%;
               border-top: 2px dashed $primary-red-low;
+              animation: "elongate" 2s forwards;
             }
           }
         }
@@ -457,5 +469,14 @@ $primary-red-low: #da3c3c65;
     to {
       transform: scale(1);
     }
+  }
+}
+
+@keyframes elongate {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
   }
 }

@@ -9,7 +9,7 @@ export const Start = () => {
 
   const handleEnter = (e) => {
     if (e.key === "Enter") {
-      startGame()
+      startGame(e)
     }
   }
 
@@ -35,12 +35,6 @@ export const Start = () => {
             className="name--input"
             placeholder="NAME"
             onKeyDown={(e) => handleEnter(e)}
-            onChange={(e) =>
-              setGameState((prev) => ({
-                ...prev,
-                name: e.target.value,
-              }))
-            }
           ></input>
           {err && (
             <p style={{ color: "red" }}>Tell me your name first!</p>

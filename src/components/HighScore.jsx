@@ -14,7 +14,6 @@ export const HighScore = () => {
       const docSnap = await getDoc(usersRef)
       try {
         if (docSnap.exists()) {
-          console.log("Document data:", docSnap.data())
           setHighscores(docSnap.data())
         } else {
           console.log("No such document!")
@@ -23,6 +22,7 @@ export const HighScore = () => {
         console.log("error" + err)
       }
     }
+
     getScores()
   }, [])
 

@@ -289,7 +289,7 @@ $primary-red-low: #da3c3c65;
     height: 100%;
     width: 100%;
     padding: 2em;
-    color: #e1d3d3; 
+    color: #e1d3d3;
 
     .highscore {
       position: relative;
@@ -311,6 +311,7 @@ $primary-red-low: #da3c3c65;
         -ms-overflow-style: none; /* IE and Edge */
         scrollbar-width: none; /* Firefox */
         animation: appear 2s forwards;
+        transform-origin: top;
 
         li {
           list-style: none;
@@ -453,9 +454,11 @@ $primary-red-low: #da3c3c65;
   @keyframes appear {
     from {
       opacity: 0;
+      transform: scaleY(0);
     }
     to {
-      opacity: 1  ;
+      opacity: 1;
+      transform: scaleY(1);
     }
   }
 

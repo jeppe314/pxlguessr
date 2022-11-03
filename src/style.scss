@@ -454,11 +454,9 @@ $primary-red-low: #da3c3c65;
   @keyframes appear {
     from {
       opacity: 0;
-      transform: scaleY(0);
     }
     to {
       opacity: 1;
-      transform: scaleY(1);
     }
   }
 

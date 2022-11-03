@@ -128,6 +128,7 @@ export const GameContextProvider = ({ children }) => {
       height: targetHeights[curr],
       top: boxStyles.top,
       left: boxStyles.left,
+      border: "3px dashed white",
     })
   }
 
@@ -173,6 +174,7 @@ export const GameContextProvider = ({ children }) => {
       height: 0,
       top: 0,
       left: 0,
+      border: "none",
     })
   }
 

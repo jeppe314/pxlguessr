@@ -85,7 +85,6 @@ $primary-red-low: #da3c3c65;
       input {
         outline: none;
         padding: 0;
-        // letter-spacing: 1em;
         background-color: transparent;
         color: white;
         text-transform: uppercase;
@@ -105,7 +104,6 @@ $primary-red-low: #da3c3c65;
 
   .header {
     flex: 1;
-    // background-color: $headerBg;
     border-bottom: 1px solid rgba(119, 119, 119, 0.21);
     padding: 1em 5em;
     font-size: 0.8em;
@@ -276,7 +274,6 @@ $primary-red-low: #da3c3c65;
       top: 0;
       width: 0px;
       height: 0px;
-      // animation: grow 2s forwards;
       transition: width 2s, height 2s;
     }
   }
@@ -323,16 +320,7 @@ $primary-red-low: #da3c3c65;
 
           //FIXME: How select nth child of the dots?
 
-          // $timeOffset: 2s;
-          // @for $i from 1 through 20 {
-          //   li:nth-child(5):before {
-          //     // units are in the variable so SCSS just does math
-          //     animation-delay: $i * $timeOffset;
-          //   }
-          // }
-
           .dots {
-            // border-bottom: 2px dashed $primary-red;
             flex: 1;
             position: relative;
             margin: 0 0.3em;

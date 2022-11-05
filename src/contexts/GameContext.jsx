@@ -11,13 +11,14 @@ import { nanoid } from "nanoid"
 
 export const GameContext = createContext()
 export const GameContextProvider = ({ children }) => {
+
+  //STATES START
   const [boxStyles, setBoxStyles] = useState({})
   const [targetBoxStyles, setTargetBoxStyles] = useState({})
   const [err, setErr] = useState(false)
   const [mouseDown, setMouseDown] = useState(false)
   const [rect, setRect] = useState({})
   const [loading, setLoading] = useState(false)
-
   const [gameState, setGameState] = useState({
     uid: nanoid(),
     name: "",
@@ -36,14 +37,13 @@ export const GameContextProvider = ({ children }) => {
     roundScores: [],
     score: 0,
   })
+  //STATES END
 
   const {
     guessed,
     finished,
-    uid,
     score,
     name,
-    round,
     showPost,
     targetWidths,
     targetHeights,
@@ -73,6 +73,8 @@ export const GameContextProvider = ({ children }) => {
     }))
   }
 
+//BOX FUNCTIONS START
+
   const startPos = (e) => {
     if (!guessed) {
       setMouseDown(true)
@@ -92,6 +94,7 @@ export const GameContextProvider = ({ children }) => {
       })
     } else return
   }
+
   const boxMove = (e) => {
     const relX = e.clientX - rect.left
     const relY = e.clientY - rect.top
@@ -133,6 +136,10 @@ export const GameContextProvider = ({ children }) => {
     }
   }
 
+  //BOX FUNCTIONS END
+
+  //UPLOADS SCORE TO FIRESTORE
+
   const uploadScore = async () => {
     try {
       await updateDoc(doc(db, "scores", "users"), {
@@ -146,7 +153,6 @@ export const GameContextProvider = ({ children }) => {
       console.log("error: " + err)
     }
   }
-  //Upload score to firestore
   useEffect(() => {
     if (showPost) {
       uploadScore()

@@ -14,3 +14,4 @@
 // TODO: Timestamp on score in firestore to set date in highscore list
 // TODO: Update start title animation to look like resizing box
 // TODO: Loading animation on highscore
+// TODO: Create reducer?

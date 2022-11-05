@@ -1,6 +1,7 @@
 import React, { useContext } from "react"
 import { GameContext } from "../contexts/GameContext"
 import { Feedback } from "./Feedback"
+import { Modal } from "./Modal"
 
 export const Game = () => {
   const {
@@ -11,6 +12,7 @@ export const Game = () => {
     boxStyles,
     setBoxStyles,
     targetBoxStyles,
+    showModal
   } = useContext(GameContext)
   const { guessed } = gameState
 
@@ -23,6 +25,8 @@ export const Game = () => {
         boxGuess()
       }}
     >
+      <Modal showModal={showModal} />
+
       <h1 className="good--luck">Good luck!</h1>
       <div className="user--guess" style={boxStyles}></div>
       <div className="target--box" style={targetBoxStyles}></div>

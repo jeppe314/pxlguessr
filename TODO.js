@@ -15,3 +15,5 @@
 // TODO: Update start title animation to look like resizing box
 // TODO: Loading animation on highscore
 // TODO: Create reducer?
+
+// TODO: Create different context for pauses, modals and such?

@@ -9,12 +9,15 @@ import { Result } from "./components/Result"
 import { Modal } from "./components/Modal"
 
 function App() {
-  const { gameState, pauseGame } = useContext(GameContext)
+  const { gameState, pauseGame, showModal } = useContext(GameContext)
   const { started, gameLength, round, showPost } = gameState
 
   return (
     <div className="container">
       <Title />
+      <div>
+        <Modal showModal={showModal} />
+      </div>
       {started && round <= gameLength ? (
         <div className="wrapper">
           <Header />

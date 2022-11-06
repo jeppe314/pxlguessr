@@ -17,3 +17,4 @@
 // TODO: Create reducer?
 
 // TODO: Create different context for pauses, modals and such?
+// FIXME: Conditional rendering of blur when modal is open

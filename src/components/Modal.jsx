@@ -2,11 +2,12 @@ import React, { useContext, useState } from "react"
 import { GameContext } from "../contexts/GameContext"
 import { Btn } from "./Btn"
 
-export const Modal = ({showModal}) => {
+export const Modal = ({ showModal }) => {
+  //Messes up state lol
   const { playAgain, goHome, unPauseGame } = useContext(GameContext)
   console.log("modal: " + showModal)
   return (
-    <div className={showModal === true ? "modal show" : "modal hide"}>
+    <div className={`modal ${showModal ? "show" : ""}`}>
       <div>
         <h2>Pause</h2>
       </div>

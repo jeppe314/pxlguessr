@@ -51,8 +51,10 @@ export const GameContextProvider = ({ children }) => {
 
   const pauseGame = () => {
     setShowModal(true)
+    document.querySelector(".modal").classList.remove("hide")
   }
   const unPauseGame = () => {
+    document.querySelector(".modal").classList.add("hide")
     setShowModal(false)
   }
 
@@ -85,6 +87,9 @@ export const GameContextProvider = ({ children }) => {
       roundScores: [],
       score: 0,
     })
+    if (showModal) {
+      setShowModal(false)
+    }
   }
 
   const startGame = async (e) => {
@@ -227,6 +232,9 @@ export const GameContextProvider = ({ children }) => {
       widthDiff: [],
       heightDiff: [],
     }))
+    if (showModal) {
+      setShowModal(false)
+    }
   }
 
   return (

@@ -12,7 +12,7 @@ export const Game = () => {
     boxStyles,
     setBoxStyles,
     targetBoxStyles,
-    showModal
+    showModal,
   } = useContext(GameContext)
   const { guessed } = gameState
 
@@ -24,8 +24,11 @@ export const Game = () => {
       onMouseUp={() => {
         boxGuess()
       }}
+      style={{}}
     >
-      <Modal showModal={showModal} />
+      {/* <div>
+        <Modal showModal={showModal} />
+      </div> */}
 
       <h1 className="good--luck">Good luck!</h1>
       <div className="user--guess" style={boxStyles}></div>

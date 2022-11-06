@@ -40,6 +40,31 @@ $primary-red-low: #da3c3c65;
   }
 }
 
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+  padding: 2em;
+  text-transform: uppercase;
+  .btn {
+    width: 100%;
+  }
+}
+
+.hide {
+  animation: disappear 2s forwards;
+}
+
+.show {
+  animation: appear 2s forwards;
+}
+
 .container {
   height: 100vh;
   width: 100%;
@@ -121,7 +146,6 @@ $primary-red-low: #da3c3c65;
         width: 50px;
       }
     }
-
     .dropdown {
       position: absolute;
       z-index: 1;

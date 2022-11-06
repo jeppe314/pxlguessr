@@ -6,10 +6,11 @@ import { Header } from "./components/Header"
 import { GameContext } from "./contexts/GameContext"
 import { Title } from "./components/Title"
 import { Result } from "./components/Result"
+import { Modal } from "./components/Modal"
 
 function App() {
-  const { gameState } = useContext(GameContext)
-  const { started, gameLength, round, finished, showPost } = gameState
+  const { gameState, pauseGame } = useContext(GameContext)
+  const { started, gameLength, round, showPost } = gameState
 
   return (
     <div className="container">

@@ -17,5 +17,5 @@
 // TODO: Create reducer?
 
 // TODO: Create different context for pauses, modals and such?
-// FIXME: Conditional rendering of blur when modal is open
-// FIXME: Home function messes up game
+// CHECK: Conditional rendering of blur when modal is open
+// CHECK: Home function messes up game

@@ -12,31 +12,8 @@ import { nanoid } from "nanoid"
 export const GameContext = createContext()
 export const GameContextProvider = ({ children }) => {
   //STATES START
-  const [boxStyles, setBoxStyles] = useState({})
-  const [targetBoxStyles, setTargetBoxStyles] = useState({})
-  const [err, setErr] = useState(false)
-  const [mouseDown, setMouseDown] = useState(false)
-  const [rect, setRect] = useState({})
-  const [loading, setLoading] = useState(false)
-  const [showModal, setShowModal] = useState(false)
-  const [gameState, setGameState] = useState({
-    uid: nanoid(),
-    name: "",
-    finished: false,
-    showPost: false,
-    started: false,
-    guessed: false,
-    gameLength: 5,
-    round: 1,
-    targetHeights: randomIntFromInterval(20, 400, 5),
-    targetWidths: randomIntFromInterval(20, 400, 5),
-    widthGuesses: [],
-    heightGuesses: [],
-    widthDiff: [],
-    heightDiff: [],
-    roundScores: [],
-    score: 0,
-  })
+
+
   //STATES END
 
   const {

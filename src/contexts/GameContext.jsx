@@ -87,6 +87,9 @@ export const GameContextProvider = ({ children }) => {
       roundScores: [],
       score: 0,
     })
+    setRect({})
+    setTargetBoxStyles({})
+    setBoxStyles({})
     if (showModal) {
       setShowModal(false)
     }

@@ -135,6 +135,11 @@ $primary-red-low: #da3c3c65;
     flex-direction: column;
     height: 100%;
     width: 100%;
+    //Makes text not selectable//
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
   }
 
   .header {
@@ -224,6 +229,11 @@ $primary-red-low: #da3c3c65;
     z-index: 1;
     transition: all 0.8s ease-out;
     transform-origin: bottom left;
+    //Makes text not selectable//
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
   }
 
   .stretch {

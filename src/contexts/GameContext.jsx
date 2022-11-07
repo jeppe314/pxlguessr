@@ -40,6 +40,7 @@ export const GameContextProvider = ({ children }) => {
   //STATES END
 
   const {
+    uid,
     guessed,
     finished,
     score,
@@ -180,6 +181,7 @@ export const GameContextProvider = ({ children }) => {
     try {
       await updateDoc(doc(db, "scores", "users"), {
         scores: arrayUnion({
+          uid: uid,
           name: name,
           score: score,
           date: Timestamp.now(),

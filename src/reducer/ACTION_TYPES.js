@@ -1,0 +1,4 @@
+export const ACTION_TYPES = {
+  GAME_START: "GAME_START",
+  GAME_START_ERR: "GAME_START_ERR",
+}

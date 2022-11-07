@@ -11,7 +11,6 @@ import { nanoid } from "nanoid"
 
 export const GameContext = createContext()
 export const GameContextProvider = ({ children }) => {
-
   //STATES START
   const [boxStyles, setBoxStyles] = useState({})
   const [targetBoxStyles, setTargetBoxStyles] = useState({})
@@ -19,6 +18,7 @@ export const GameContextProvider = ({ children }) => {
   const [mouseDown, setMouseDown] = useState(false)
   const [rect, setRect] = useState({})
   const [loading, setLoading] = useState(false)
+  const [showModal, setShowModal] = useState(false)
   const [gameState, setGameState] = useState({
     uid: nanoid(),
     name: "",
@@ -49,6 +49,15 @@ export const GameContextProvider = ({ children }) => {
     targetHeights,
   } = gameState
 
+  const pauseGame = () => {
+    setShowModal(true)
+    document.querySelector(".modal").classList.remove("hide")
+  }
+  const unPauseGame = () => {
+    document.querySelector(".modal").classList.add("hide")
+    setShowModal(false)
+  }
+
   function randomIntFromInterval(min, max, n) {
     const arr = []
     for (let i = 0; i < n; i++) {
@@ -58,6 +67,33 @@ export const GameContextProvider = ({ children }) => {
   }
 
   const curr = gameState.round - 1
+
+  const goHome = () => {
+    setGameState({
+      uid: nanoid(),
+      name: "",
+      finished: false,
+      showPost: false,
+      started: false,
+      guessed: false,
+      gameLength: 5,
+      round: 1,
+      targetHeights: randomIntFromInterval(20, 400, 5),
+      targetWidths: randomIntFromInterval(20, 400, 5),
+      widthGuesses: [],
+      heightGuesses: [],
+      widthDiff: [],
+      heightDiff: [],
+      roundScores: [],
+      score: 0,
+    })
+    setRect({})
+    setTargetBoxStyles({})
+    setBoxStyles({})
+    if (showModal) {
+      setShowModal(false)
+    }
+  }
 
   const startGame = async (e) => {
     if (e.target.length < 3) {
@@ -73,7 +109,7 @@ export const GameContextProvider = ({ children }) => {
     }))
   }
 
-//BOX FUNCTIONS START
+  //BOX FUNCTIONS START
 
   const startPos = (e) => {
     if (!guessed) {
@@ -199,6 +235,9 @@ export const GameContextProvider = ({ children }) => {
       widthDiff: [],
       heightDiff: [],
     }))
+    if (showModal) {
+      setShowModal(false)
+    }
   }
 
   return (
@@ -221,6 +260,10 @@ export const GameContextProvider = ({ children }) => {
         targetBoxStyles,
         loading,
         setLoading,
+        goHome,
+        pauseGame,
+        unPauseGame,
+        showModal,
       }}
     >
       {children}

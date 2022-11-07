@@ -18,7 +18,7 @@ export const Game = () => {
 
   return (
     <div
-      className="game"
+      className={`game ${showModal && "blur"}`}
       onMouseDown={(e) => startPos(e)}
       onMouseMove={(e) => boxMove(e)}
       onMouseUp={() => {

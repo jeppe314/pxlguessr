@@ -11,22 +11,6 @@ import { nanoid } from "nanoid"
 
 export const GameContext = createContext()
 export const GameContextProvider = ({ children }) => {
-  //STATES START
-
-
-  //STATES END
-
-  const {
-    uid,
-    guessed,
-    finished,
-    score,
-    name,
-    showPost,
-    targetWidths,
-    targetHeights,
-  } = gameState
-
   const pauseGame = () => {
     setShowModal(true)
     document.querySelector(".modal").classList.remove("hide")

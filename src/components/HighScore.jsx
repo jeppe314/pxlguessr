@@ -42,10 +42,7 @@ export const HighScore = () => {
         className="highscore--item"
         style={{
           backgroundColor:
-            gameState.name === user.name &&
-            user.score === gameState.score
-              ? "rgb(70, 24, 24)"
-              : "",
+            gameState.uid === user.uid ? "rgb(70, 24, 24)" : "",
         }}
       >
         <p className="highscore--name">

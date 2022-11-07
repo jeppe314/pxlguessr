@@ -10,7 +10,13 @@ export const Title = () => {
       className={`title ${!started && !finished && "stretch"} ${
         started && round < 6 && "top"
       } ${showPost && "postPos"}`}
-      onClick={showModal ? () => unPauseGame() : () => pauseGame()}
+      onClick={
+        started && !finished
+          ? showModal
+            ? () => unPauseGame()
+            : () => pauseGame()
+          : undefined
+      }
       style={started ? { cursor: "pointer" } : undefined}
     >
       PxlGuessr

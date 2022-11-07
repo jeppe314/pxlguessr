@@ -10,11 +10,11 @@
 // CHECK: Add floating stuff background
 // CHECK: Initialize firebase (havent installed yet)
 
-// TODO: Play again modal
+// CHECK: Play again modal
 // TODO: Timestamp on score in firestore to set date in highscore list
-// TODO: Update start title animation to look like resizing box
-// TODO: Loading animation on highscore
-// TODO: Create reducer?
+// CHECK: Update start title animation to look like resizing box
+// CHECK: Loading animation on highscore
+// TODO: IN PROGRESS Create reducer?
 
 // TODO: Create different context for pauses, modals and such?
 // CHECK: Conditional rendering of blur when modal is open

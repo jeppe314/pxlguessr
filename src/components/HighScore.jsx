@@ -27,7 +27,6 @@ export const HighScore = () => {
       setLoading(false)
       console.log("färdigladdat")
     }
-
     getScores()
   }, [])
 

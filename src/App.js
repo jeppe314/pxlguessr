@@ -9,7 +9,7 @@ import { Result } from "./components/Result"
 import { Modal } from "./components/Modal"
 
 function App() {
-  const { gameState, pauseGame, showModal } = useContext(GameContext)
+  const { gameState, showModal } = useContext(GameContext)
   const { started, gameLength, round, showPost } = gameState
 
   return (

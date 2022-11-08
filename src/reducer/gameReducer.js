@@ -93,8 +93,8 @@ export const gameReducer = (state, action) => {
                 round: 1,
                 score: 0,
                 roundScores: [],
-                targetHeights: randomIntFromInterval(20, 400, 5),
-                targetWidths: randomIntFromInterval(20, 400, 5),
+                targetHeights: 50,
+                targetWidths: 50,
                 widthGuesses: [],
                 heightGuesses: [],
                 widthDiff: [],
@@ -105,15 +105,15 @@ export const gameReducer = (state, action) => {
                 ...state,
                 mouseDown: true,
                 rect: {
-                    left: e.clientX,
-                    top: e.clientY,
-                    initialTop: e.clientY - el.top,
+                    left: action.payload.x,
+                    top: action.payload.y,
+                    initialTop: action.payload.y - action.payload.topHeight,
                 },
                 boxStyles: {
                     width: "0px",
                     height: "0px",
-                    left: e.clientX,
-                    top: e.clientY - el.top,
+                    left: action.payload,
+                    top: action.payload.y - action.payload.topHeight,
                 },
             }
         case ACTION_TYPES.BOX_MOVE:

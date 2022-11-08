@@ -94,7 +94,10 @@ export const GameContextProvider = ({ children }) => {
             //     left: e.clientX,
             //     top: e.clientY - el.top,
             // })
-            dispatch({ type: ACTION_TYPES.BOX_START })
+            dispatch({
+                type: ACTION_TYPES.BOX_START,
+                payload: { x: e.clientX, y: e.clientY, topHeight: el.top },
+            })
         } else return
     }
 

@@ -9,8 +9,8 @@ export const INITIAL_STATE = {
     guessed: false,
     gameLength: 5,
     round: 1,
-    targetHeights: [], //RANDOMI NT FUNC
-    targetWidths: [], //RANDOM INT FUNC
+    targetHeights: [],
+    targetWidths: [],
     widthGuesses: [],
     heightGuesses: [],
     widthDiff: [],

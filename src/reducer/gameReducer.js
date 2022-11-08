@@ -93,6 +93,7 @@ export const gameReducer = (state, action) {
         case ACTION_TYPES.BOX_START:
           return {
             ...state,
+            mouseDown: true,
             rect: {
               left: e.clientX,
               top: e.clientY,
@@ -136,6 +137,8 @@ export const gameReducer = (state, action) {
             ...state,
 
           }
+        case ACTION_TYPES.GO_HOME:
+          return INITIAL_STATE§
     }
 }
 

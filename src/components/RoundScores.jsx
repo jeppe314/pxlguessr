@@ -3,8 +3,8 @@ import { GameContext } from "../contexts/GameContext"
 import { nanoid } from "nanoid"
 
 export const RoundScores = () => {
-  const { gameState } = useContext(GameContext)
-  const { roundScores } = gameState
+  const { state } = useContext(GameContext)
+  const { roundScores } = state
 
   const rounds = roundScores.map((round, index) => {
     return (

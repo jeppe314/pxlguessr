@@ -1,8 +1,7 @@
-import { nanoid } from "nanoid"
 import { ACTION_TYPES } from "./ACTION_TYPES"
 
 export const INITIAL_STATE = {
-    uid: nanoid(),
+    uid: "",
     name: "",
     finished: false,
     showPost: false,
@@ -39,6 +38,11 @@ export const gameReducer = (state, action) => {
                 ...state,
                 loading: true,
             }
+        case ACTION_TYPES.LOADING_STOP:
+            return {
+                ...state,
+                loading: false,
+            }
         case ACTION_TYPES.MOUSE_UP:
             return {
                 ...state,
@@ -62,8 +66,11 @@ export const gameReducer = (state, action) => {
         case ACTION_TYPES.GAME_START:
             return {
                 ...state,
+                uid: action.payload.uid,
+                targetHeights: action.payload.randomHeights,
+                targetWidths: action.payload.randomWidths,
                 started: true,
-                name: "FIXME",
+                name: action.payload.name,
             }
         case ACTION_TYPES.NEXT_ROUND:
             return {
@@ -93,8 +100,8 @@ export const gameReducer = (state, action) => {
                 round: 1,
                 score: 0,
                 roundScores: [],
-                targetHeights: 50,
-                targetWidths: 50,
+                targetHeights: action.payload.randomHeights,
+                targetWidths: action.payload.randomWidths,
                 widthGuesses: [],
                 heightGuesses: [],
                 widthDiff: [],
@@ -118,6 +125,7 @@ export const gameReducer = (state, action) => {
             }
         case ACTION_TYPES.BOX_MOVE:
             return {
+                ...state,
                 boxStyles: {
                     top:
                         action.payload.relY >= 0
@@ -154,6 +162,12 @@ export const gameReducer = (state, action) => {
         case ACTION_TYPES.BOX_RESET:
             return {
                 ...state,
+            }
+        case ACTION_TYPES.SCORE_UPDATE:
+            return {
+                ...state,
+                roundScores: [...state.roundScores, action.payload.thisRound],
+                score: state.score + action.payload.thisRound,
             }
         case ACTION_TYPES.GO_HOME:
             return INITIAL_STATE

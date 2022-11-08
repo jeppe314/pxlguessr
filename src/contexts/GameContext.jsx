@@ -72,7 +72,15 @@ export const GameContextProvider = ({ children }) => {
         //     started: true,
         //     name: e.target.value,
         // }))
-        dispatch({ type: ACTION_TYPES.GAME_START })
+        dispatch({
+            type: ACTION_TYPES.GAME_START,
+            payload: {
+                uid: nanoid(),
+                name: e.target.value,
+                randomHeights: randomIntFromInterval(30, 400, 5),
+                randomWidths: randomIntFromInterval(30, 400, 5),
+            },
+        })
     }
 
     //BOX FUNCTIONS START
@@ -107,7 +115,7 @@ export const GameContextProvider = ({ children }) => {
         if (state.mouseDown) {
             dispatch({
                 type: ACTION_TYPES.BOX_MOVE,
-                payload: { relX, relY, x: e.clientX, y: e.clientY },
+                payload: { relX: relX, relY: relY, x: e.clientX, y: e.clientY },
             })
             // setBoxStyles({
             //     top:
@@ -206,7 +214,13 @@ export const GameContextProvider = ({ children }) => {
     }
 
     const playAgain = () => {
-        dispatch({ type: ACTION_TYPES.PLAY_AGAIN })
+        dispatch({
+            type: ACTION_TYPES.PLAY_AGAIN,
+            payload: {
+                randomHeights: randomIntFromInterval(30, 400, 5),
+                randomWidths: randomIntFromInterval(30, 400, 5),
+            },
+        })
         // setGameState((prev) => ({
         //     ...prev,
         //     started: true,
@@ -230,6 +244,9 @@ export const GameContextProvider = ({ children }) => {
     return (
         <GameContext.Provider
             value={{
+                state,
+                dispatch,
+                ACTION_TYPES,
                 startGame,
                 curr,
                 playAgain,

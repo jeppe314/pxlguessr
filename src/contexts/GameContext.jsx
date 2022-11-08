@@ -105,7 +105,10 @@ export const GameContextProvider = ({ children }) => {
         const relX = e.clientX - state.rect.left
         const relY = e.clientY - state.rect.top
         if (state.mouseDown) {
-            dispatch({ type: ACTION_TYPES.BOX_MOVE })
+            dispatch({
+                type: ACTION_TYPES.BOX_MOVE,
+                payload: { relX, relY, x: e.clientX, y: e.clientY },
+            })
             // setBoxStyles({
             //     top:
             //         relY >= 0
@@ -128,7 +131,13 @@ export const GameContextProvider = ({ children }) => {
             state.boxStyles.width > 0 &&
             state.boxStyles.height > 0
         ) {
-            dispatch({ type: ACTION_TYPES.BOX_STOP })
+            dispatch({
+                type: ACTION_TYPES.BOX_STOP,
+                payload: {
+                    width: state.targetHeights[curr],
+                    height: state.targetHeights[curr],
+                },
+            })
             // setGameState((prev) => ({
             //     ...prev,
             //     guessed: true,

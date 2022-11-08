@@ -120,31 +120,34 @@ export const gameReducer = (state, action) => {
             return {
                 boxStyles: {
                     top:
-                        relY >= 0
-                            ? rect.initialTop
-                            : rect.initialTop - Math.abs(relY),
+                        action.payload.relY >= 0
+                            ? state.rect.initialTop
+                            : state.rect.initialTop -
+                              Math.abs(action.payload.relY),
                     left:
-                        relX >= 0
-                            ? e.clientX - relX
-                            : e.clientX - relX - Math.abs(relX),
-                    width: Math.abs(relX),
-                    height: Math.abs(relY),
+                        action.payload.relX >= 0
+                            ? action.payload.x - action.payload.relX
+                            : action.payload.x -
+                              action.payload.relX -
+                              Math.abs(action.payload.relX),
+                    width: Math.abs(action.payload.relX),
+                    height: Math.abs(action.payload.relY),
                 },
             }
         case ACTION_TYPES.BOX_STOP:
             return {
                 ...state,
                 guessed: true,
-                widthGuesses: [...prev.widthGuesses, boxStyles.width],
-                heightGuesses: [...prev.heightGuesses, boxStyles.height],
-                finished: prev.round >= prev.gameLength ? true : false,
-                started: prev.round > prev.gameLength ? false : true,
+                widthGuesses: [...state.widthGuesses, state.boxStyles.width],
+                heightGuesses: [...state.heightGuesses, state.boxStyles.height],
+                finished: state.round >= state.gameLength ? true : false,
+                started: state.round > state.gameLength ? false : true,
                 targetBoxStyles: {
                     ...state.targetBoxStyles,
-                    width: targetWidths[curr],
-                    height: targetHeights[curr],
-                    top: boxStyles.top,
-                    left: boxStyles.left,
+                    width: action.payload.width,
+                    height: action.payload.height,
+                    top: state.boxStyles.top,
+                    left: state.boxStyles.left,
                     border: "3px dashed white",
                 },
             }

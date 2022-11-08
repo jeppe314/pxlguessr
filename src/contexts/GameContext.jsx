@@ -119,23 +119,28 @@ export const GameContextProvider = ({ children }) => {
     }
 
     const boxGuess = () => {
-        setMouseDown(false)
-        if (!guessed && boxStyles.width > 0 && boxStyles.height > 0) {
-            setGameState((prev) => ({
-                ...prev,
-                guessed: true,
-                widthGuesses: [...prev.widthGuesses, boxStyles.width],
-                heightGuesses: [...prev.heightGuesses, boxStyles.height],
-                finished: prev.round >= prev.gameLength ? true : false,
-                started: prev.round > prev.gameLength ? false : true,
-            }))
-            setTargetBoxStyles({
-                width: targetWidths[curr],
-                height: targetHeights[curr],
-                top: boxStyles.top,
-                left: boxStyles.left,
-                border: "3px dashed white",
-            })
+        dispatch({ type: ACTION_TYPES.MOUSE_UP })
+        if (
+            !state.guessed &&
+            state.boxStyles.width > 0 &&
+            state.boxStyles.height > 0
+        ) {
+            dispatch({ type: ACTION_TYPES.BOX_STOP })
+            // setGameState((prev) => ({
+            //     ...prev,
+            //     guessed: true,
+            //     widthGuesses: [...prev.widthGuesses, boxStyles.width],
+            //     heightGuesses: [...prev.heightGuesses, boxStyles.height],
+            //     finished: prev.round >= prev.gameLength ? true : false,
+            //     started: prev.round > prev.gameLength ? false : true,
+            // }))
+            // setTargetBoxStyles({
+            //     width: targetWidths[curr],
+            //     height: targetHeights[curr],
+            //     top: boxStyles.top,
+            //     left: boxStyles.left,
+            //     border: "3px dashed white",
+            // })
         }
     }
 
@@ -147,9 +152,9 @@ export const GameContextProvider = ({ children }) => {
         try {
             await updateDoc(doc(db, "scores", "users"), {
                 scores: arrayUnion({
-                    uid: uid,
-                    name: name,
-                    score: score,
+                    uid: state.uid,
+                    name: state.name,
+                    score: state.score,
                     date: Timestamp.now(),
                 }),
             })
@@ -158,53 +163,55 @@ export const GameContextProvider = ({ children }) => {
         }
     }
     useEffect(() => {
-        if (showPost) {
+        if (state.showPost) {
             uploadScore()
         } else return
-    }, [showPost])
+    }, [state.showPost])
 
     const nextRound = async () => {
         //Resets gameState for a new round
-        setGameState((prev) => ({
-            ...prev,
-            showPost: finished ? true : false,
-            guessed: false,
-            round: prev.round + 1,
-        }))
+        dispatch({ type: ACTION_TYPES.NEXT_ROUND })
+        // setGameState((prev) => ({
+        //     ...prev,
+        //     showPost: finished ? true : false,
+        //     guessed: false,
+        //     round: prev.round + 1,
+        // }))
 
-        //Resets guess box
-        setBoxStyles((prev) => ({
-            ...prev,
-            width: 0,
-            height: 0,
-        }))
-        setTargetBoxStyles({
-            width: 0,
-            height: 0,
-            top: 0,
-            left: 0,
-            border: "none",
-        })
+        // //Resets guess box
+        // setBoxStyles((prev) => ({
+        //     ...prev,
+        //     width: 0,
+        //     height: 0,
+        // }))
+        // setTargetBoxStyles({
+        //     width: 0,
+        //     height: 0,
+        //     top: 0,
+        //     left: 0,
+        //     border: "none",
+        // })
     }
 
     const playAgain = () => {
-        setGameState((prev) => ({
-            ...prev,
-            started: true,
-            finished: false,
-            showPost: false,
-            round: 1,
-            score: 0,
-            roundScores: [],
-            targetHeights: randomIntFromInterval(20, 400, 5),
-            targetWidths: randomIntFromInterval(20, 400, 5),
-            widthGuesses: [],
-            heightGuesses: [],
-            widthDiff: [],
-            heightDiff: [],
-        }))
-        if (showModal) {
-            setShowModal(false)
+        dispatch({ type: ACTION_TYPES.PLAY_AGAIN })
+        // setGameState((prev) => ({
+        //     ...prev,
+        //     started: true,
+        //     finished: false,
+        //     showPost: false,
+        //     round: 1,
+        //     score: 0,
+        //     roundScores: [],
+        //     targetHeights: randomIntFromInterval(20, 400, 5),
+        //     targetWidths: randomIntFromInterval(20, 400, 5),
+        //     widthGuesses: [],
+        //     heightGuesses: [],
+        //     widthDiff: [],
+        //     heightDiff: [],
+        // }))
+        if (state.showModal) {
+            dispatch({ type: ACTION_TYPES.MODAL_HIDE })
         }
     }
 
@@ -212,26 +219,16 @@ export const GameContextProvider = ({ children }) => {
         <GameContext.Provider
             value={{
                 startGame,
-                gameState,
-                setGameState,
                 curr,
                 playAgain,
                 nextRound,
-                boxStyles,
-                setBoxStyles,
                 startPos,
                 boxMove,
                 boxGuess,
                 feedbackQuotes,
-                err,
-                setErr,
-                targetBoxStyles,
-                loading,
-                setLoading,
                 goHome,
                 pauseGame,
                 unPauseGame,
-                showModal,
             }}
         >
             {children}

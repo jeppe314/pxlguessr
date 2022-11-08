@@ -39,6 +39,16 @@ export const gameReducer = (state, action) => {
                 ...state,
                 loading: true,
             }
+        case ACTION_TYPES.MOUSE_UP:
+            return {
+                ...state,
+                mouseDown: false,
+            }
+        case ACTION_TYPES.MOUSE_DOWN:
+            return {
+                ...state,
+                mouseDown: true,
+            }
         case ACTION_TYPES.MODAL_SHOW:
             return {
                 ...state,
@@ -58,7 +68,7 @@ export const gameReducer = (state, action) => {
         case ACTION_TYPES.NEXT_ROUND:
             return {
                 ...state,
-                showPost: finished ? true : false,
+                showPost: state.finished ? true : false,
                 guessed: false,
                 round: state.round + 1, //state.round or just round?
                 boxStyles: {

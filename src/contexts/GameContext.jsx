@@ -4,18 +4,21 @@ import { feedbackQuotes } from "../assets/quotes"
 import { doc, updateDoc, Timestamp, arrayUnion } from "firebase/firestore"
 import { db } from "../firebase"
 import { nanoid } from "nanoid"
+import { ACTION_TYPES } from "../reducer/ACTION_TYPES"
 
 export const GameContext = createContext()
 export const GameContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(gameReducer, INITIAL_STATE)
 
     const pauseGame = () => {
-        setShowModal(true)
+        // setShowModal(true)
+        dispatch({ type: ACTION_TYPES.MODAL_SHOW })
         document.querySelector(".modal").classList.remove("hide")
     }
     const unPauseGame = () => {
         document.querySelector(".modal").classList.add("hide")
-        setShowModal(false)
+        // setShowModal(false)
+        dispatch({ type: ACTION_TYPES.MODAL_HIDE })
     }
 
     function randomIntFromInterval(min, max, n) {
@@ -26,87 +29,92 @@ export const GameContextProvider = ({ children }) => {
         return arr
     }
 
-    const curr = gameState.round - 1
+    const curr = state.round - 1
 
     const goHome = () => {
-        setGameState({
-            uid: nanoid(),
-            name: "",
-            finished: false,
-            showPost: false,
-            started: false,
-            guessed: false,
-            gameLength: 5,
-            round: 1,
-            targetHeights: randomIntFromInterval(20, 400, 5),
-            targetWidths: randomIntFromInterval(20, 400, 5),
-            widthGuesses: [],
-            heightGuesses: [],
-            widthDiff: [],
-            heightDiff: [],
-            roundScores: [],
-            score: 0,
-        })
-        setRect({})
-        setTargetBoxStyles({})
-        setBoxStyles({})
-        if (showModal) {
-            setShowModal(false)
-        }
+        // setGameState({
+        //     uid: nanoid(),
+        //     name: "",
+        //     finished: false,
+        //     showPost: false,
+        //     started: false,
+        //     guessed: false,
+        //     gameLength: 5,
+        //     round: 1,
+        //     targetHeights: randomIntFromInterval(20, 400, 5),
+        //     targetWidths: randomIntFromInterval(20, 400, 5),
+        //     widthGuesses: [],
+        //     heightGuesses: [],
+        //     widthDiff: [],
+        //     heightDiff: [],
+        //     roundScores: [],
+        //     score: 0,
+        // })
+        // setRect({})
+        // setTargetBoxStyles({})
+        // setBoxStyles({})
+        // if (showModal) {
+        //     setShowModal(false)
+        // }
+        dispatch({ type: ACTION_TYPES.GO_HOME })
     }
 
     const startGame = async (e) => {
         if (e.target.length < 3) {
             console.log("error")
-            setErr(true)
+            // setErr(true)
+            dispatch({ type: ACTION_TYPES.ERROR })
             return
         }
 
-        setGameState((prev) => ({
-            ...prev,
-            started: true,
-            name: e.target.value,
-        }))
+        // setGameState((prev) => ({
+        //     ...prev,
+        //     started: true,
+        //     name: e.target.value,
+        // }))
+        dispatch({ type: ACTION_TYPES.GAME_START })
     }
 
     //BOX FUNCTIONS START
 
     const startPos = (e) => {
-        if (!guessed) {
-            setMouseDown(true)
+        if (!state.guessed) {
+            // setMouseDown(true)
             const el = e.target.getBoundingClientRect()
 
-            setRect({
-                left: e.clientX,
-                top: e.clientY,
-                initialTop: e.clientY - el.top,
-            })
+            // setRect({
+            //     left: e.clientX,
+            //     top: e.clientY,
+            //     initialTop: e.clientY - el.top,
+            // })
 
-            setBoxStyles({
-                width: "0px",
-                height: "0px",
-                left: e.clientX,
-                top: e.clientY - el.top,
-            })
+            // setBoxStyles({
+            //     width: "0px",
+            //     height: "0px",
+            //     left: e.clientX,
+            //     top: e.clientY - el.top,
+            // })
+            dispatch({ type: ACTION_TYPES.BOX_START })
         } else return
     }
 
     const boxMove = (e) => {
-        const relX = e.clientX - rect.left
-        const relY = e.clientY - rect.top
-        if (mouseDown) {
-            setBoxStyles({
-                top:
-                    relY >= 0
-                        ? rect.initialTop
-                        : rect.initialTop - Math.abs(relY),
-                left:
-                    relX >= 0
-                        ? e.clientX - relX
-                        : e.clientX - relX - Math.abs(relX),
-                width: Math.abs(relX),
-                height: Math.abs(relY),
-            })
+        const relX = e.clientX - state.rect.left
+        const relY = e.clientY - state.rect.top
+        if (state.mouseDown) {
+            dispatch({ type: ACTION_TYPES.BOX_MOVE })
+            // setBoxStyles({
+            //     top:
+            //         relY >= 0
+            //             ? rect.initialTop
+            //             : rect.initialTop - Math.abs(relY),
+            //     left:
+            //         relX >= 0
+            //             ? e.clientX - relX
+            //             : e.clientX - relX - Math.abs(relX),
+            //     width: Math.abs(relX),
+            //     height: Math.abs(relY),
+            // })
         } else return
     }
 

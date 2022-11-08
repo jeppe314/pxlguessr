@@ -10,8 +10,8 @@ export const INITIAL_STATE = {
     guessed: false,
     gameLength: 5,
     round: 1,
-    targetHeights: randomIntFromInterval(20, 400, 5),
-    targetWidths: randomIntFromInterval(20, 400, 5),
+    targetHeights: [], //RANDOMI NT FUNC
+    targetWidths: [], //RANDOM INT FUNC
     widthGuesses: [],
     heightGuesses: [],
     widthDiff: [],

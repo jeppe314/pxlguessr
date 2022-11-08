@@ -111,7 +111,6 @@ export const GameContextProvider = ({ children }) => {
       })
     } else return
   }
-  //FIXME
 
   const boxGuess = () => {
     setMouseDown(false)

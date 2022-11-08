@@ -11,13 +11,11 @@ export const GameContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(gameReducer, INITIAL_STATE)
 
     const pauseGame = () => {
-        // setShowModal(true)
         dispatch({ type: ACTION_TYPES.MODAL_SHOW })
         document.querySelector(".modal").classList.remove("hide")
     }
     const unPauseGame = () => {
         document.querySelector(".modal").classList.add("hide")
-        // setShowModal(false)
         dispatch({ type: ACTION_TYPES.MODAL_HIDE })
     }
 
@@ -32,30 +30,6 @@ export const GameContextProvider = ({ children }) => {
     const curr = state.round - 1
 
     const goHome = () => {
-        // setGameState({
-        //     uid: nanoid(),
-        //     name: "",
-        //     finished: false,
-        //     showPost: false,
-        //     started: false,
-        //     guessed: false,
-        //     gameLength: 5,
-        //     round: 1,
-        //     targetHeights: randomIntFromInterval(20, 400, 5),
-        //     targetWidths: randomIntFromInterval(20, 400, 5),
-        //     widthGuesses: [],
-        //     heightGuesses: [],
-        //     widthDiff: [],
-        //     heightDiff: [],
-        //     roundScores: [],
-        //     score: 0,
-        // })
-        // setRect({})
-        // setTargetBoxStyles({})
-        // setBoxStyles({})
-        // if (showModal) {
-        //     setShowModal(false)
-        // }
         dispatch({ type: ACTION_TYPES.GO_HOME })
     }
 
@@ -67,11 +41,6 @@ export const GameContextProvider = ({ children }) => {
             return
         }
 
-        // setGameState((prev) => ({
-        //     ...prev,
-        //     started: true,
-        //     name: e.target.value,
-        // }))
         dispatch({
             type: ACTION_TYPES.GAME_START,
             payload: {
@@ -87,21 +56,7 @@ export const GameContextProvider = ({ children }) => {
 
     const startPos = (e) => {
         if (!state.guessed) {
-            // setMouseDown(true)
             const el = e.target.getBoundingClientRect()
-
-            // setRect({
-            //     left: e.clientX,
-            //     top: e.clientY,
-            //     initialTop: e.clientY - el.top,
-            // })
-
-            // setBoxStyles({
-            //     width: "0px",
-            //     height: "0px",
-            //     left: e.clientX,
-            //     top: e.clientY - el.top,
-            // })
             dispatch({
                 type: ACTION_TYPES.BOX_START,
                 payload: { x: e.clientX, y: e.clientY, topHeight: el.top },
@@ -117,18 +72,6 @@ export const GameContextProvider = ({ children }) => {
                 type: ACTION_TYPES.BOX_MOVE,
                 payload: { relX: relX, relY: relY, x: e.clientX, y: e.clientY },
             })
-            // setBoxStyles({
-            //     top:
-            //         relY >= 0
-            //             ? rect.initialTop
-            //             : rect.initialTop - Math.abs(relY),
-            //     left:
-            //         relX >= 0
-            //             ? e.clientX - relX
-            //             : e.clientX - relX - Math.abs(relX),
-            //     width: Math.abs(relX),
-            //     height: Math.abs(relY),
-            // })
         } else return
     }
 
@@ -146,21 +89,6 @@ export const GameContextProvider = ({ children }) => {
                     height: state.targetHeights[curr],
                 },
             })
-            // setGameState((prev) => ({
-            //     ...prev,
-            //     guessed: true,
-            //     widthGuesses: [...prev.widthGuesses, boxStyles.width],
-            //     heightGuesses: [...prev.heightGuesses, boxStyles.height],
-            //     finished: prev.round >= prev.gameLength ? true : false,
-            //     started: prev.round > prev.gameLength ? false : true,
-            // }))
-            // setTargetBoxStyles({
-            //     width: targetWidths[curr],
-            //     height: targetHeights[curr],
-            //     top: boxStyles.top,
-            //     left: boxStyles.left,
-            //     border: "3px dashed white",
-            // })
         }
     }
 
@@ -191,26 +119,6 @@ export const GameContextProvider = ({ children }) => {
     const nextRound = async () => {
         //Resets gameState for a new round
         dispatch({ type: ACTION_TYPES.NEXT_ROUND })
-        // setGameState((prev) => ({
-        //     ...prev,
-        //     showPost: finished ? true : false,
-        //     guessed: false,
-        //     round: prev.round + 1,
-        // }))
-
-        // //Resets guess box
-        // setBoxStyles((prev) => ({
-        //     ...prev,
-        //     width: 0,
-        //     height: 0,
-        // }))
-        // setTargetBoxStyles({
-        //     width: 0,
-        //     height: 0,
-        //     top: 0,
-        //     left: 0,
-        //     border: "none",
-        // })
     }
 
     const playAgain = () => {
@@ -221,21 +129,7 @@ export const GameContextProvider = ({ children }) => {
                 randomWidths: randomIntFromInterval(30, 400, 5),
             },
         })
-        // setGameState((prev) => ({
-        //     ...prev,
-        //     started: true,
-        //     finished: false,
-        //     showPost: false,
-        //     round: 1,
-        //     score: 0,
-        //     roundScores: [],
-        //     targetHeights: randomIntFromInterval(20, 400, 5),
-        //     targetWidths: randomIntFromInterval(20, 400, 5),
-        //     widthGuesses: [],
-        //     heightGuesses: [],
-        //     widthDiff: [],
-        //     heightDiff: [],
-        // }))
+
         if (state.showModal) {
             dispatch({ type: ACTION_TYPES.MODAL_HIDE })
         }

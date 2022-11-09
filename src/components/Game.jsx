@@ -4,38 +4,35 @@ import { Feedback } from "./Feedback"
 import { Modal } from "./Modal"
 
 export const Game = () => {
-  const {
-    gameState,
-    startPos,
-    boxMove,
-    boxGuess,
-    boxStyles,
-    setBoxStyles,
-    targetBoxStyles,
-    showModal,
-  } = useContext(GameContext)
-  const { guessed } = gameState
+    const {
+        state,
+        startPos,
+        boxMove,
+        boxGuess,
+        boxStyles,
+        targetBoxStyles,
+        showModal,
+    } = useContext(GameContext)
 
-  return (
-    <div
-      className={`game ${showModal && "blur"}`}
-      onMouseDown={(e) => startPos(e)}
-      onMouseMove={(e) => boxMove(e)}
-      onMouseUp={() => {
-        boxGuess()
-      }}
-      style={{}}
-    >
-      {/* <div>
-        <Modal showModal={showModal} />
-      </div> */}
-
-      <h1 className="good--luck">Good luck!</h1>
-      <div className="user--guess" style={boxStyles}></div>
-      <div className="target--box" style={targetBoxStyles}></div>
-      {guessed && (
-        <Feedback setBoxStyles={setBoxStyles} boxStyles={boxStyles} />
-      )}
-    </div>
-  )
+    return (
+        <div
+            className={`game ${showModal && "blur"}`}
+            onMouseDown={(e) => startPos(e)}
+            onMouseMove={(e) => boxMove(e)}
+            onMouseUp={() => {
+                boxGuess()
+            }}
+            style={{}}
+        >
+            <h1 className="good--luck">Good luck!</h1>
+            <div className="user--guess" style={state.boxStyles}></div>
+            <div className="target--box" style={state.targetBoxStyles}></div>
+            {state.guessed && (
+                <Feedback
+                    // setBoxStyles={setBoxStyles}
+                    boxStyles={state.boxStyles}
+                />
+            )}
+        </div>
+    )
 }

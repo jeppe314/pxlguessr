@@ -9,27 +9,27 @@ import { Result } from "./components/Result"
 import { Modal } from "./components/Modal"
 
 function App() {
-  const { gameState, showModal } = useContext(GameContext)
-  const { started, gameLength, round, showPost } = gameState
+    const { state } = useContext(GameContext)
+    const { started, gameLength, round, showPost } = state
 
-  return (
-    <div className="container">
-      <Title />
-      <div>
-        <Modal showModal={showModal} />
-      </div>
-      {started && round <= gameLength ? (
-        <div className="wrapper">
-          <Header />
-          <Game />
+    return (
+        <div className="container">
+            <Title />
+            <div>
+                <Modal showModal={state.showModal} />
+            </div>
+            {started && round <= gameLength ? (
+                <div className="wrapper">
+                    <Header />
+                    <Game />
+                </div>
+            ) : showPost ? (
+                <Result />
+            ) : (
+                <Start />
+            )}
         </div>
-      ) : showPost ? (
-        <Result />
-      ) : (
-        <Start />
-      )}
-    </div>
-  )
+    )
 }
 
 export default App

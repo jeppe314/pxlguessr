@@ -85,7 +85,7 @@ export const GameContextProvider = ({ children }) => {
             dispatch({
                 type: ACTION_TYPES.BOX_STOP,
                 payload: {
-                    width: state.targetHeights[curr],
+                    width: state.targetWidths[curr],
                     height: state.targetHeights[curr],
                 },
             })

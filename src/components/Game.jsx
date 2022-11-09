@@ -1,18 +1,10 @@
 import React, { useContext } from "react"
 import { GameContext } from "../contexts/GameContext"
 import { Feedback } from "./Feedback"
-import { Modal } from "./Modal"
 
 export const Game = () => {
-    const {
-        state,
-        startPos,
-        boxMove,
-        boxGuess,
-        boxStyles,
-        targetBoxStyles,
-        showModal,
-    } = useContext(GameContext)
+    const { state, startPos, boxMove, boxGuess, showModal } =
+        useContext(GameContext)
 
     return (
         <div

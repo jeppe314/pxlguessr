@@ -5,9 +5,9 @@ import { GameContextProvider } from "./contexts/GameContext"
 
 const root = ReactDOM.createRoot(document.getElementById("root"))
 root.render(
-  <GameContextProvider>
-    {/* <React.StrictMode> */}
-      <App />
-    {/* </React.StrictMode> */}
-  </GameContextProvider>
+    <React.StrictMode>
+        <GameContextProvider>
+            <App />
+        </GameContextProvider>
+    </React.StrictMode>
 )

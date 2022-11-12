@@ -33,8 +33,8 @@ export const GameContextProvider = ({ children }) => {
         dispatch({ type: ACTION_TYPES.GO_HOME })
     }
 
-    const startGame = async (e) => {
-        if (e.target.value.length < 1) {
+    const startGame = async (name) => {
+        if (name.length < 1) {
             dispatch({ type: ACTION_TYPES.ERROR })
             return
         }
@@ -43,7 +43,7 @@ export const GameContextProvider = ({ children }) => {
             type: ACTION_TYPES.GAME_START,
             payload: {
                 uid: nanoid(),
-                name: e.target.value,
+                name: name,
                 randomHeights: randomIntFromInterval(30, 400, 5),
                 randomWidths: randomIntFromInterval(30, 400, 5),
             },

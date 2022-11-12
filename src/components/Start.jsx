@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useRef } from "react"
 import { Btn } from "./Btn"
 import { GameContext } from "../contexts/GameContext"
 import "./../floatingBg.scss"
@@ -6,6 +6,7 @@ import { FloatingShapes } from "./FloatingShapes"
 
 export const Start = () => {
     const { state, startGame } = useContext(GameContext)
+    const nameRef = useRef()
 
     const handleEnter = (e) => {
         if (e.key === "Enter") {
@@ -29,12 +30,15 @@ export const Start = () => {
                         <br />
                         You can do this, right?
                     </p>
-                    <Btn handleClick={(e) => startGame(e)}>Start Game</Btn>
+                    <Btn handleClick={() => startGame(nameRef.current.value)}>
+                        Start Game
+                    </Btn>
                     <input
                         type="text"
                         className="name--input"
                         placeholder="NAME"
                         onKeyDown={(e) => handleEnter(e)}
+                        ref={nameRef}
                     ></input>
                     {state.err && (
                         <p style={{ color: "red" }}>Tell me your name first!</p>

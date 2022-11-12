@@ -34,9 +34,7 @@ export const GameContextProvider = ({ children }) => {
     }
 
     const startGame = async (e) => {
-        if (e.target.length < 3) {
-            console.log("error")
-            // setErr(true)
+        if (e.target.value.length < 1) {
             dispatch({ type: ACTION_TYPES.ERROR })
             return
         }

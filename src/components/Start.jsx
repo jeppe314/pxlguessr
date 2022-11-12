@@ -5,7 +5,7 @@ import "./../floatingBg.scss"
 import { FloatingShapes } from "./FloatingShapes"
 
 export const Start = () => {
-    const { err, startGame } = useContext(GameContext)
+    const { state, startGame } = useContext(GameContext)
 
     const handleEnter = (e) => {
         if (e.key === "Enter") {
@@ -36,7 +36,7 @@ export const Start = () => {
                         placeholder="NAME"
                         onKeyDown={(e) => handleEnter(e)}
                     ></input>
-                    {err && (
+                    {state.err && (
                         <p style={{ color: "red" }}>Tell me your name first!</p>
                     )}
                 </div>

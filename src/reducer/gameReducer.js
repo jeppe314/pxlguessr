@@ -71,6 +71,7 @@ export const gameReducer = (state, action) => {
                 targetWidths: action.payload.randomWidths,
                 started: true,
                 name: action.payload.name,
+                err: false,
             }
         case ACTION_TYPES.NEXT_ROUND:
             return {

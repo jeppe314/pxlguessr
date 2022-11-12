@@ -8,9 +8,9 @@ export const Start = () => {
     const { state, startGame } = useContext(GameContext)
     const nameRef = useRef()
 
-    const handleEnter = (e) => {
-        if (e.key === "Enter") {
-            startGame(e)
+    const handleEnter = (event, name) => {
+        if (event.key === "Enter") {
+            startGame(name)
         }
     }
 
@@ -37,7 +37,7 @@ export const Start = () => {
                         type="text"
                         className="name--input"
                         placeholder="NAME"
-                        onKeyDown={(e) => handleEnter(e)}
+                        onKeyDown={(e) => handleEnter(e, nameRef.current.value)}
                         ref={nameRef}
                     ></input>
                     {state.err && (

@@ -94,6 +94,8 @@ export const gameReducer = (state, action) => {
         case ACTION_TYPES.PLAY_AGAIN:
             return {
                 ...state,
+                guessed: false,
+                showModal: false,
                 started: true,
                 finished: false,
                 showPost: false,
@@ -102,6 +104,8 @@ export const gameReducer = (state, action) => {
                 roundScores: [],
                 targetHeights: action.payload.randomHeights,
                 targetWidths: action.payload.randomWidths,
+                targetBoxStyles: {},
+                boxStyles: {},
                 widthGuesses: [],
                 heightGuesses: [],
                 widthDiff: [],
@@ -162,6 +166,8 @@ export const gameReducer = (state, action) => {
         case ACTION_TYPES.BOX_RESET:
             return {
                 ...state,
+                boxStyles: {},
+                targetBoxStyles: {},
             }
         case ACTION_TYPES.SCORE_UPDATE:
             return {

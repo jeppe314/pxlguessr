@@ -4,7 +4,6 @@ import { Btn } from "./Btn"
 
 export const Modal = ({ showModal }) => {
     const { playAgain, goHome, unPauseGame } = useContext(GameContext)
-    console.log("modal: " + showModal)
     return (
         <div className={`modal ${showModal ? "show" : ""}`}>
             <div>
